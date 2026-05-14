@@ -1,14 +1,14 @@
-using System;
-using System.Collections.Generic;
-using HarmonyLib;
 using UnityEngine;
 using UnityEngine.UI;
+using CarQuestAP.Helpers;
+using UnityEngine.Events;
 
 namespace CarQuestAP.Archipelago {
     public static class APItemMenu {
         public static void CreateItemMenu(Menu __instance) {
+            // Create Menu object and Dropdown
             GameObject menu = __instance.gameObject;
-            GameObject itemMenu = UnityEngine.Object.Instantiate(__instance.menus[11].gameObject);
+            GameObject itemMenu = Object.Instantiate(__instance.menus[11].gameObject);
             itemMenu.name = "ItemMenu";
 
             itemMenu.transform.GetChild(0).gameObject.name = "Top";
@@ -18,10 +18,48 @@ namespace CarQuestAP.Archipelago {
             options.Add("Hub");
             dropDown.GetComponent<Dropdown>().AddOptions(options);
 
-            UnityEngine.Object.Destroy(dropDown.GetComponent<SecretDropdown>());
+            Object.Destroy(dropDown.GetComponent<SecretDropdown>());
 
+            // Create Buttons
+            GameObject itemTrans = Object.Instantiate(__instance.menus[10].GetChild(0).gameObject);
+            itemTrans.name = "Middle";
+            GameObject backTrans = Object.Instantiate(__instance.menus[10].GetChild(1).gameObject);
+            backTrans.name = "Bottom";
+
+            GridLayoutGroup itemLayout = itemTrans.GetComponent<GridLayoutGroup>();
+            itemLayout.constraintCount = 3;
+            itemTrans.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, 694);
+
+            GameObject btnTransTemplate = Object.Instantiate(itemTrans.transform.GetChild(0).gameObject);
+            btnTransTemplate.transform.GetComponent<Button>().onClick.RemoveAllListeners();
+            for(int i = itemTrans.transform.childCount - 1; i >=0 ; i--) {
+                Object.Destroy(itemTrans.transform.GetChild(i).gameObject);
+            }
+
+            ContentSizeFitter sizeFitter = itemTrans.AddComponent<ContentSizeFitter>();
+            sizeFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+            ScrollRect itemScroll = itemMenu.AddComponent<ScrollRect>();
+            itemScroll.content = itemTrans.GetComponent<RectTransform>();
+            itemScroll.scrollSensitivity = 20;
+            itemScroll.horizontal = false;
+
+            foreach(string secret in SecretHandler.getSecrets().Keys) {
+                GameObject newTransBtn = Object.Instantiate(btnTransTemplate);
+                newTransBtn.name = secret;
+                newTransBtn.transform.GetChild(0).GetComponent<Text>().text = secret;
+                Object.Destroy(newTransBtn.transform.GetChild(0).GetComponent<DisplayDataUI>());
+                Button newBtn = newTransBtn.GetComponent<Button>();
+                newBtn.onClick.AddListener((UnityAction)ToggleSecret);
+
+                newTransBtn.transform.SetParent(itemTrans.transform);
+            }
+            
+            backTrans.transform.SetParent(itemMenu.transform);
+            itemTrans.transform.SetParent(itemMenu.transform);
+
+            // Add menu to Menus list
             __instance.menus.Add(itemMenu.transform);
-            itemMenu.transform.SetParent(menu.GetComponent<Transform>());
+            itemMenu.transform.SetParent(menu.transform);
         }
 
         public static void UpdatePauseMenu(Menu __instance) {
@@ -30,7 +68,11 @@ namespace CarQuestAP.Archipelago {
             CarQuestAP._log.LogInfo(pauseMenuTrans.GetChild(0).GetComponent<Text>().text);
             pauseMenuTrans.GetChild(0).GetComponent<Text>().text = "Recieved Items";
             CarQuestAP._log.LogInfo(pauseMenuTrans.GetChild(0).GetComponent<Text>().text);
-            UnityEngine.Object.Destroy(pauseMenuTrans.GetChild(0).GetComponent<TranslateUI>());
+            Object.Destroy(pauseMenuTrans.GetChild(0).GetComponent<TranslateUI>());
+        }
+
+        public static void ToggleSecret() {
+            CarQuestAP._log.LogInfo("Button Pressed!");
         }
     }
 }

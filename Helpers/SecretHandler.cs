@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace CarQuestAP.Helpers {
     public static class SecretHandler {
-        private static Dictionary<string, List<string>> secretMapping = new Dictionary<string, List<string>>() {
+        private static Dictionary<string, List<string>> hubSecretMapping = new Dictionary<string, List<string>>() {
             //Hub
             {"Hub: Start Room Blocker",                      ["wall01"]},
             {"Hub: Simple Portal Bridge Wall",               ["bridgewall"]},
@@ -68,6 +68,9 @@ namespace CarQuestAP.Helpers {
             {"Hub: University Portal Planetarium Access",    ["uniportalupgrade"]},
             {"Hub: Power Room North Door",                   ["threewallrun"]},
             {"Hub: World Peace",                             ["brickbristles"]},
+        };
+
+        private static Dictionary<string, List<string>>  museumSecretMapping = new Dictionary<string, List<string>>() {
             // Hub Museum
             {"Hub: Sun Museum Glass",                        ["stainedglass01"]},
             {"Hub: Block Museum Glass",                      [""]},
@@ -156,6 +159,10 @@ namespace CarQuestAP.Helpers {
 
         public static string getLocationName(string secretID) {
             return locationMapping[secretID];
+        }
+
+        public static Dictionary<string, List<string>> getSecrets() {
+            return hubSecretMapping;
         }
     }
 }
