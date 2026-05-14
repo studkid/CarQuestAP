@@ -13,12 +13,13 @@ public class CarQuestAP : BasePlugin {
     public static List<SaveHandler> saves = new List<SaveHandler>();
 
     public override void Load() {
-        saves.Add(new SaveHandler("localhost", "Player1", "", 1));
         var harmony = new Harmony("Archipelago");
+        
         // Plugin startup logic
         _log = Log;
         _log.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
         harmony.PatchAll();
         _log.LogInfo("Harmony patches applied!");
+        saves.Add(new SaveHandler("localhost", "Player1", "", 1));
     }
 }

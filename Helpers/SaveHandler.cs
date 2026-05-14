@@ -18,7 +18,7 @@ namespace CarQuestAP.Helpers {
                 tokens = 0,
                 batteries = 0,
             };
-
+            
             LoadAPSave();
         }
 

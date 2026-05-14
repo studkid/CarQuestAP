@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using CarQuestAP.Archipelago;
 using HarmonyLib;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace CarQuestAP.Patches {
@@ -9,19 +11,31 @@ namespace CarQuestAP.Patches {
     public static class SaveOverride {
         [HarmonyPrefix]
         public static void PreFix(ref string action, ref Menu __instance) {
+            float realtimeSinceStartup = Time.realtimeSinceStartup;
+            if(__instance.delayTime >= realtimeSinceStartup) {
+                return;
+            }
+
             if(action == "Start") {
                 __instance.MenuShow("SaveProfiles");
                 return;
             }
+
             if(action.Contains("Slot")) {
                 int slotNum = Convert.ToInt32(action[^1]) + 1;
                 ePlayerPrefs.SetSlot(slotNum);
                 return;
             }
+
             // if(action == "Start") {
             //     eSecret.DeleteAll();
             //     CarQuestAP.saveHandler.LoadAPSave();
             // }
+
+            if(action == "SaveProfiles") {
+                __instance.MenuShow("ItemMenu");
+                return;
+            }
         }
     }
 
@@ -45,21 +59,10 @@ namespace CarQuestAP.Patches {
             }
 
             // Add Item Menu
-            GameObject menu = __instance.gameObject;
-            GameObject itemMenu = GameObject.Instantiate(__instance.menus[11].gameObject);
-            itemMenu.name = "ItemMenu";
-            itemMenu.SetActive(true);
+            APItemMenu.CreateItemMenu(__instance);
 
-            itemMenu.transform.GetChild(0).gameObject.name = "Top";
-            GameObject dropDown = itemMenu.transform.GetChild(0).GetChild(0).gameObject;
-            CarQuestAP._log.LogInfo(dropDown.GetComponent<Dropdown>());
-            dropDown.GetComponent<Dropdown>().ClearOptions();
-            Il2CppSystem.Collections.Generic.List<string> options = new Il2CppSystem.Collections.Generic.List<string>();
-            options.Add("Hub");
-            dropDown.GetComponent<Dropdown>().AddOptions(options);
-
-            __instance.menus.Add(itemMenu.transform);
-            itemMenu.transform.SetParent(menu.GetComponent<Transform>());
+            // Modify Pause Menu
+            APItemMenu.UpdatePauseMenu(__instance);
         }
     }
 }
