@@ -1,0 +1,446 @@
+Secrets:
+--- Blocktaria ---
+wall01 - First tile
+    Opens start room
+poolfardoor - South side tile in allyway
+    Opens secret door from pool
+pieceramptop - In secret pool door
+    Unlocks nearby ramp to sculpturecover
+sculpturecover - ramp jump near pool
+    Moves tile revealing cornerramp block
+cornerramp - under block South of pool
+    Unlocks ramp north of pool
+leftshortwall - ontop of wall south of pool
+    Unlocks wall lower north of pool
+slalomtrees - behind wall lower south pool
+    Unlocks slalom trees near pool
+museumramp - lower south pool floating
+    Unlocks ramp to museum
+sidebridge - In museum
+    Unlocks 125 battery portal near pool jump (Floating Maze)
+shortwall - by the cube momument
+    Unlocks wall lower north of pool near soth 125 portal
+vaultdoor - near north 125 portal
+    unlocks battery vault north of pool
+backbridgeramp - in battery vault
+    Removes block under vaultdoor
+backbridge - in a hole near vaultdoor artifact
+    Fixes the bridge to north 125 portal (fixit stop)
+pool - Behind pool drain door
+    Drains the pool
+bigwall - In the pool  
+    Opens starting right door
+moveableblock - ledge near start room
+    Unlocks moveable block in pool
+pooltopper1 - south west top pool
+    Unlocks south east top pool
+pooltopper2 - south east top pool
+    Unlocks north west top pool
+vaultinnerdoor - north west top pool
+    Unlocks door inside the vault 150 portal (Slider Puzzle)
+blockfall - center of the filled pool
+    Unlocks more of the left starting path
+wall02 - Left start path end
+    Unlocks center start path
+toprightramp - Central path right
+    Unlocks center right ramp
+chip - center top ramp path
+    Unlocks university ramp
+topleftramp - university exterior
+    Unlocks center left ramp
+blocktop - Central path left
+    Unlocks north west pool
+distantbridge - north west pool
+    Unlocks central 200 battery portal (hedge maze)
+narrowbridge - north side push ramp
+    unlocks up ramp near first portal
+blockramp - top path left
+    Unlocks bridge behind university
+raiseblock - lower ledge past university bridge
+    reveals whalebridge artifact
+whalebridge - upper ledge past university bridge
+    Creates bridge to 250 portal 
+arenabridge - ramp leading to 250 portal (whales)
+    Unlocks arena
+arenaextension - arena in hole
+    extends podium ledge
+backjump - on arena podium
+    removes start area back wall
+arenaentrance - jump from start area
+    remove arena entrance walls
+arenaramps - backside of the arena
+    unlock arena slideable ramp
+arenablocker - near area 4500 portal
+    lowers podium
+arenabigramp - inside arena podium
+    creates big arena ramp (leads to 250 portal (glass box))
+singlefloatingrock - upper east light puzzle
+    lowers floating rock near pool
+deadendwall - floating rocks near pool
+    lower upper deadend wall
+floatingrocks - in the upper deadend path
+    creates floating rock path to 250 portal (sands of fallen kings)
+anotherdeadendwall - past outlook wall
+    unlocks deadend wall to outlook
+frontledge - short dead end path near outlook
+    unlocks top path right wall
+templedoor - top path ledge
+    unlocks university
+uniramp - university podium
+    lowers from ramp in university
+unichair - university lower back side
+    lowers second row ramp
+unichair2 - university second row
+    lowers third row ramp
+unichair3 - university third row ramp
+    reveals university books
+unimovableramp - fourth row ramp
+    lowers all ramps
+unibackramp - first row ramp
+    lowers back pillar
+templeramp - upper back row 
+    raises university second floor ramp
+jumpwall - university attic behind triangle
+    unlocks upper east path jump walls (leads to 250 ice temple valley portal)
+uniportalupgrade - upper east jump path near star buttonusing System.Collections.Generic
+
+Token02 - university attic
+Token05 - block dodging (post game)
+Token06 - Top of the Arena (post game?)
+Token07 - Teleport Island (post game)
+
+--- Museum Pieces (Hub) ---
+stainedglass01 - ledge near moveableblock (before post game)
+stainedglass02 - north pressure plate jump
+stainedglass03 - floating path east of pool (before post game)
+stainedglass04 - In whales near base of the volcano (before post game?)
+stainedglass05 - pressure plate hopscotch
+stainedglass06 - teleport island 
+stainedglass07 - excersion portal 3
+stainedglass08 - after limbo and defeating capt brick bristles
+stainedglass09 - Ice Temple top ice cube
+stainedglass10 - top of the arena
+
+--- Start Area ---
+exitramp - tile behind the mound
+    Unlocks exit ramp
+bridgewall - tile on exit ramp
+    Removes wall from starter bridge
+(secret behind wall)
+
+--- Floating Maze ---
+blockspinplatform - behind start area
+    lowers block to allow exit
+blockspinwall - at the exit portal
+    Unlocks cube momument behind pool
+(secret behind wall near start)
+(secret behind exit portal)
+
+--- Fixit Stop ---
+mesaramp - Top of the Back Hill
+    Raises hill near start
+cavedoor - Top of front hill
+    Unlocks cave near fixit shop
+mesaplatform - in cave near fixit shop
+    Raises hill back left
+mesa - back left plateau
+    Raise right hill near start
+fixitdoor - Top of right front hill
+    Opens fixit shop door
+fence - inside fixit shop
+    Lowers fence behind shop
+portalramp - inside fence behind shop
+    Raises ramp to the exit portal
+drain - near exit portal
+    Opens pool drain door
+2 wheel collectables
+
+--- Slider Puzzle ---
+sliderramp - front right
+    Unlocks first ramp
+pushleft - back left
+    Unlocks left pushable
+pushright - front right on ledge
+    Unlocks right pushable
+sliderbigramp - right side top
+    Unlocks left side top ramp
+sliderstopper - left side top
+    Unlocks back sliding ramp
+poolrefill - portal exit
+    Refills pool
+You would need to mo
+--- Hedge Maze ---
+mazewall - first piece lower
+    unlocks path to ramp
+mazeramp - top of hedge near start
+    moves upper ramp
+mazebridge - hidden cave near hint station
+    Raises ramp near cave entrance
+mazedoor - top of hedge near cave  
+    Reveals artifact behind hedge wall
+mazeblock - hidden inside wall
+    top hedge maze bridge
+endmazebridge - top hedge near ramp
+    Unlocks ending platform
+uniwall - Maze exit reward
+    Opens wall near university
+wheel token03 - under map
+
+--- Whales ---
+seamesaramp - near blockwhale bell
+    raises north east ramp
+volcanoramp - on pirate ship
+    Creates volcano ramp
+lookout ramp - on top of volcano
+    Raises ramp near fort
+lookoutgaps - pillar near fort
+    Raises extior fort wall
+smallsearamp - end of exterior fort wall
+    raises small ramp near bell
+lookoutsinglegap - top of small ramp near bell
+    raises ramp to fort wall
+seapinnacle - inside fort
+    raises platform near big ramp
+anchor - top of platform near big ramp
+    fix pirate ship (probably breaks volcanoramp logic!!)
+canon - inside ship
+    open hole in volcano
+bell - inside volcano
+    ring block whale bell
+ledgebridge - ontop of block whale
+    raise upper ledge
+
+Token12 - ramp jump from fort
+Token04 - ontop of fixed ship
+
+--- Glass Box ---
+firstplatform - top of the box
+    lowers top platform
+secondplatform - bottom of the box
+    lowers exit platform
+cornerwall - exit reward
+    Unlocks upper east path
+
+2 tokens
+
+--- Sands of the Fallen Kings ---
+upramp - under south eastfallen roof
+    raise exterior ramp
+towera - on exterior wall
+    lowers tower near entrance
+cornertower - in tower near entrance
+    lowers corner wall tower
+towerd - in corner wall tower
+    moves the fallen roof
+towerc - inside near broken tower
+    moves roof from fallen tower
+towerb - inside fallen tower roof
+    lowers north west tower
+towerportal - inside the north west tower
+    raises bridge to portal
+cornertowerdoor - inside south west tower roof
+    opens corner tower door
+stonehead - inside corner tower door
+    reveals artifact inside head
+toplid - stone head reward
+    reveals exit artifact
+viewwall - exit reward
+    lower wall near lookout
+
+--- Ice Temple Valley ---
+templelowblocker - NE perimeter
+    Frees SE ice ramp
+templehighblocker - South ramp jump
+    Reveals west artifact
+hugelongramp - West exterior ramp jump
+    Creates big NW ramp
+sliderclamp - Lower North side jump
+    lowers west big ice wall
+walkwayblocker - lower NW jump
+    opens NW exterior path
+templesimpleblocker - SW top of the wall
+    Opens Norther center wall
+longtowerbridge - Top west jump
+    Raises south upper bridge
+triplebridge - SE top of the wall
+    Raises east and north upper bridges
+templehighramp - NW top of the wall
+    Raises west upper bridge
+bentbridge - SW top slightly out of reach
+    Raises ramp connecting to the west upper bridge
+templetop - Top center long path
+    raises NW top roof
+treewall NW top under raised roof
+    opens door to big tree
+
+Museum artifact under roof
+Token behind ice near start (super boost car)
+
+--- Block Sheep Patures ---
+(sheeppendoor, sheephiddendoor, unijunk all activate on entry)
+sheepramp - west behind tree
+    reveals ramp by sheep pen
+sheeppendoor - inside sheep pen
+    opens door to leave sheep pen
+windmilldoor - sheep herder
+    opens windmill door
+sheeppen - inside windmill
+    raises sheep pen (will make sheepramp and sheepopendoor impossible)
+sheephiddendoor - top of sheep pen
+    reveals sheep pen hidden door
+unijunk - inside sheep pen hidden door
+    reveal university attic light puzzle
+
+--- Brick Bristle's Island ---
+seawayblock - Top of spiral ramp tower
+    lower SE path wall
+underseabridge - East small rock
+    Reveal artifact under SE path
+seawalkway01 - behind wall under SE path
+    SE path bridge
+plankblocker - end of SE path bridge 
+    lowers patform behind start
+seacornerramp - raft behind start
+    lower SE ocean pillar
+seawalkway02 - ontop of SE ocean pillar
+    SE path bridge 2
+seaarchramp - SE bridge path 2
+    lower far NE ramp
+seawalkway03 - NE raft artifact
+    SE path bridge 3
+timedoor - SE path raft
+    Unlocks Day'n'Night Portal (removes 3 batteries)
+searockhill - East path end
+    ramp near block sharks
+seasideramp - ocean ramp near block sharks
+    NE artifact ramp
+caveblockerchip - island ramp near block sharks
+    ramp to south artifact
+longsearamp - south island raised platform
+    south ocean jump ramp
+seahole - behind start raised platform
+    lowers south island raised platform (longsearamp unobtainable?)
+rockholedoor - south island cave
+    opens south ocean cave
+clam - south ocean cave
+    opens clam
+waterpinnacle - inside clam
+    raises block shark pinnacle
+leftsearamp - east parkour course
+    ramp to north wall
+raftdoorblocker - lower north wall
+    east path raft door
+rightsearamp - east path raft door
+    ramp to upper north wall[HarmonyPostfix]
+    lowers sea serpant hump
+raftblocker - sea serpant hump
+    lowers south ocean cave wall
+seamonsterhead - south ocean cave 2
+    lowers sea serpant head
+plaque - sea serpant head
+    lowers spiral tower (conflicts with seawayblock)
+treeramp - lower hut platform
+    tree ramp near pond
+seamonsterheadhump - south path end
+    sea serpant head ramp
+hutblocker - serpant middle hump
+    ramp to hut
+seablocktop - inside hut
+    remove east pillar block
+huttreeway - east big jump
+    treetop ramp from hut
+treeway - left treetop path
+    treetop right path
+treepondrain - right treetop path
+    lowers pond wall
+uppertreeblocker - inside pond
+    pond treetop ramp wall
+hutdoor - treetop block flower
+    opens hut door
+islandexitramp - inside inside hut
+    unlocks exit ramp
+upperdoor - exit reward
+    east throne room door
+
+--- Throne Room ---
+throneleftramp - backside hidden path
+    upper left ramp
+thronerightramp - top left artifact
+    upper right ramp
+thronewindow01 - top right
+    backside windows
+thronewindow06 - right side back window
+    frontside windows
+thronedoorramp - left front window
+    throne door ramp
+thronedoor - right front window
+    throne door
+throne window - lower courtyard ramp[HarmonyPostfix]
+thronerightblocker - courtyard hidden corner east
+    removes east slide block
+thronewindow03 - middle west window
+    reveals middle east window
+thronewindow04 - middle east window
+    reveals south west window
+thronewindow05 - south west window
+    reaveals south east window
+thronerightdoor - south east window
+    opens courtyard east door
+throneleftdoor - short perimeter path
+    opens courtyard west door
+throneportalbridge - long perimeter path
+    lowers courtyard pillar and second east perimeter wall
+thronebackcover - courtyard back pillar
+    opens north room artifact door
+throneramp - throne room artifact door
+    creates ramp to throne
+throneportalopen - ontop of throne
+    reveals exit portal
+thronebackcover - exit reward
+    lowers upper east jump path back wall
+
+--- Planetarium ---
+planetariumblock - top of exit portal
+    lower main structure
+threewallrun - top path
+    lowers reamaining upper north east path walls
+
+--- Power Room ---
+greenblocker - east bottom artifact
+    lowers south pushable ramp
+greencable - green center artifact
+    activates green cable path
+blueblocker - west side artifact
+    lowers east pushable ramp
+bluecable - blue center artifact
+    activates blue cable path
+redblocker - north side artifact
+    lowers north pushable ramp
+redcable - red center artifact
+    activates red cable path
+yellowblocker - east top artifact
+    lowers east pushable ramp
+yellowcable - yellow center artifact
+    activates yellow cable path (conflicts with green path?)
+yellowbook - history book
+    unlocks exit path
+cbb - top west artifact
+    exit portal
+
+token above cbb
+
+--- Limbo ---
+yellowcrown - color path
+    exit portal
+
+--- Rich Portal ---
+Token08 - Center piece
+
+--- Notes ---
+Secret unlocks stored in eSecret.secrets Dict<string, int>
+    Can be written to with eSecret.AddChangeList(string key)
+Need to override SecretCollect.OnTriggerEnter() to not add secert id to secrets Dict
+Pool refills making pool batteries and bigwall artifact unobtainable!!!
+arenaextension and blockfall seem to trigger automatically when entering the hub
+university excersion portal swaps 3 times
+Re-entering the throne room after the boss fight plays the boss fight again
