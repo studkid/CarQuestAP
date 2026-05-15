@@ -35,7 +35,7 @@ namespace CarQuestAP.Helpers {
             {"Hub: Central Bridge Portal Bridge",            ["distantbridge"]},
             {"Hub: Exterior University Wall Door",           ["uniwall"]},
             {"Hub: Ramp Near Simple Portal",                 ["narrowbridge"]},
-            {"Hub: Secondary Univery Wall Door",             ["blockramp"]},
+            {"Hub: Secondary Universiy Wall Door",           ["blockramp"]},
             {"Hub: Blocker Near Whale Bridge",               ["raiseblock"]},
             {"Hub: Whale Bridge",                            ["whalebridge"]},
             {"Hub: Colloseum Bridge",                        ["arenabridge"]},
