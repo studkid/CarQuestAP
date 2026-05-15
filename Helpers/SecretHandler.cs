@@ -161,8 +161,17 @@ namespace CarQuestAP.Helpers {
             return locationMapping[secretID];
         }
 
-        public static Dictionary<string, List<string>> getSecrets() {
+        public static Dictionary<string, List<string>> getHubSecrets() {
             return hubSecretMapping;
+        }
+
+        public static List<string> locToSecretID(string locName) {
+            List<string> result = hubSecretMapping[locName];
+            if(result != null) {
+                return result;
+            }
+
+            return new List<string>();
         }
     }
 }

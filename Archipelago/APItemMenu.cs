@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace CarQuestAP.Archipelago {
     public static class APItemMenu {
-        public static void CreateItemMenu(Menu __instance) {
+        public static void createItemMenu(Menu __instance) {
             // Create Menu object and Dropdown
             GameObject menu = __instance.gameObject;
             GameObject itemMenu = Object.Instantiate(__instance.menus[11].gameObject);
@@ -44,14 +44,14 @@ namespace CarQuestAP.Archipelago {
             itemScroll.scrollSensitivity = 20;
             itemScroll.horizontal = false;
 
-            foreach(string secret in SecretHandler.getSecrets().Keys) {
+            foreach(string secret in SecretHandler.getHubSecrets().Keys) {
                 GameObject newTransBtn = Object.Instantiate(btnTransTemplate);
                 CarQuestAP._log.LogInfo(newTransBtn.GetComponent<Button>());
                 newTransBtn.name = secret;
                 newTransBtn.transform.GetChild(0).GetComponent<Text>().text = secret;
                 Object.Destroy(newTransBtn.transform.GetChild(0).GetComponent<DisplayDataUI>());
                 Button newBtn = newTransBtn.AddComponent<Button>();
-                newBtn.onClick.AddListener((UnityAction)ToggleSecret);
+                newBtn.onClick.AddListener((UnityAction)delegate{toggleSecret(secret);});
 
                 newTransBtn.transform.SetParent(itemTrans.transform);
             }
@@ -64,7 +64,7 @@ namespace CarQuestAP.Archipelago {
             itemMenu.transform.SetParent(menu.transform);
         }
 
-        public static void UpdatePauseMenu(Menu __instance) {
+        public static void updatePauseMenu(Menu __instance) {
             Transform pauseMenuTrans = __instance.menus[3].GetChild(1).GetChild(7);
             pauseMenuTrans.gameObject.SetActive(true);
             CarQuestAP._log.LogInfo(pauseMenuTrans.GetChild(0).GetComponent<Text>().text);
@@ -73,8 +73,9 @@ namespace CarQuestAP.Archipelago {
             Object.Destroy(pauseMenuTrans.GetChild(0).GetComponent<TranslateUI>());
         }
 
-        public static void ToggleSecret() {
+        public static void toggleSecret(string locName) {
             CarQuestAP._log.LogInfo("Button Pressed!");
+            eSecret.AddChangeList(SecretHandler.locToSecretID(locName)[0]);
         }
     }
 }

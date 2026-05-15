@@ -59,10 +59,10 @@ namespace CarQuestAP.Patches {
             }
 
             // Add Item Menu
-            APItemMenu.CreateItemMenu(__instance);
+            APItemMenu.createItemMenu(__instance);
 
             // Modify Pause Menu
-            APItemMenu.UpdatePauseMenu(__instance);
+            APItemMenu.updatePauseMenu(__instance);
         }
     }
 }
