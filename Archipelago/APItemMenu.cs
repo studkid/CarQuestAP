@@ -31,7 +31,8 @@ namespace CarQuestAP.Archipelago {
             itemTrans.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, 694);
 
             GameObject btnTransTemplate = Object.Instantiate(itemTrans.transform.GetChild(0).gameObject);
-            btnTransTemplate.transform.GetComponent<Button>().onClick.RemoveAllListeners();
+            Object.DestroyImmediate(btnTransTemplate.GetComponent<Button>());
+            CarQuestAP._log.LogInfo(btnTransTemplate.GetComponent<Button>());
             for(int i = itemTrans.transform.childCount - 1; i >=0 ; i--) {
                 Object.Destroy(itemTrans.transform.GetChild(i).gameObject);
             }
@@ -45,10 +46,11 @@ namespace CarQuestAP.Archipelago {
 
             foreach(string secret in SecretHandler.getSecrets().Keys) {
                 GameObject newTransBtn = Object.Instantiate(btnTransTemplate);
+                CarQuestAP._log.LogInfo(newTransBtn.GetComponent<Button>());
                 newTransBtn.name = secret;
                 newTransBtn.transform.GetChild(0).GetComponent<Text>().text = secret;
                 Object.Destroy(newTransBtn.transform.GetChild(0).GetComponent<DisplayDataUI>());
-                Button newBtn = newTransBtn.GetComponent<Button>();
+                Button newBtn = newTransBtn.AddComponent<Button>();
                 newBtn.onClick.AddListener((UnityAction)ToggleSecret);
 
                 newTransBtn.transform.SetParent(itemTrans.transform);
