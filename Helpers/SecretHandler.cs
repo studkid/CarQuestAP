@@ -39,7 +39,7 @@ namespace CarQuestAP.Helpers {
             {"Hub: Blocker Near Whale Bridge",               ["raiseblock"]},
             {"Hub: Whale Bridge",                            ["whalebridge"]},
             {"Hub: Colloseum Bridge",                        ["arenabridge"]},
-            {"Hub: Colloseum Podeum Extension",              ["arenaextension"]},
+            {"Hub: Colloseum Podium Extension",              ["arenaextension"]},
             {"Hub: Start Area Back Removal",                 ["backjump"]},
             {"Hub: Colloseum Exterior Wall Doors",           ["arenaentrance"]},
             {"Hub: Colloseum Push Block Unlock",             ["arenaramps"]},
