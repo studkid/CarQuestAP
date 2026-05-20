@@ -6,7 +6,13 @@ namespace CarQuestAP.Patches {
     public static class PrintSecret {
         [HarmonyPostfix]
         public static void PostFix(ref SecretCollect __instance) {
-            CarQuestAP._log.LogInfo($"Secret ID: {__instance.secretID}");
+            if(SecretHandler.getLocationName(__instance.secretID) == "") {
+                CarQuestAP._log.LogInfo($"Secret ID: {__instance.secretID} Location Name: {SecretHandler.getLocationName(__instance.secretID)}");
+            }
+            else {
+                CarQuestAP._log.LogError($"Secret ID: {__instance.secretID} Not Mapped!");
+            }
+            
             CarQuestAP.saves[0].AddNewSecret(__instance.secretID);
         }
     }

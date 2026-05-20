@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CarQuestAP.Helpers {
     public static class SecretHandler {
@@ -56,7 +57,7 @@ namespace CarQuestAP.Helpers {
             {"Hub: University Back Row Ramp",                ["uniramp"]},
             {"Hub: University Lower Second Row Ramp",        ["unichair"]},
             {"Hub: University Lower Third Row Ramp",         ["unichair2"]},
-            {"Hub: University Lower Fourth Row Ramp",         ["unichair3"]},
+            {"Hub: University Lower Fourth Row Ramp",        ["unichair3"]},
             {"Hub: University Lower Push Ramp",              ["unimovableramp"]},
             {"Hub: University Lower Back Artifact Platform", ["unibackramp"]},
             {"Hub: University Second Floor Ramp",            ["templeramp"]},
@@ -191,9 +192,168 @@ namespace CarQuestAP.Helpers {
             {"blockspinwall",        "Cubes: Artifact On Exit Ramp"},
 
             // Fixit
+            {"mesaramp",             "Desert: North East Mound Artifact"},
+            {"cavedoor",             "Desert: South West Mound Artifact"},
+            {"mesaplatform",         "Desert: Shop Cave Artifact"},
+            {"mesa",                 "Desert: North West Mound Artifact"},
+            {"fixitdoor",            "Desert: South East Mound Artifact"},
+            {"fence",                "Desert: Fixit Shop Interior Artifact"},
+            {"portalramp",           "Desert: Fixit Shop Fence Artifact"},
+            {"drain",                "Desert: Exit Reward Artifact"},
+
+            // Slider
+            {"sliderramp",          "Slider: Front Right Artifact"},
+            {"pushleft" ,           "Slider: Lower Back Artifact"},
+            {"pushright" ,          "Slider: Upper Left Artifact"},
+            {"sliderbigramp" ,      "Slider: Upper Right Artifact"},
+            {"sliderstopper" ,      "Slider: Upper Upper Left Artifact"},
+            {"poolrefill" ,         "Slider: Exit Reward Artifact"},
+
+            // Maze
+            {"mazewall" ,           "Maze: First Artifact"},
+            {"mazeramp" ,           "Maze: On Wall Near Start Artifact"},
+            {"mazebridge" ,         "Maze: Cave Artifact"},
+            {"mazedoor" ,           "Maze: Top of Mini Maze Artifact"},
+            {"mazeblock" ,          "Maze: Hidden Drop Off Artifact"},
+            {"endmazebridge" ,      "Maze: On Wall Near Exit Artifact"},
+            {"uniwall",             "Maze: Exit Reward Artifact"},
+
+            // Glass
+            {"firstplatform",       "Glass Cube: Top Artifact"},
+            {"secondplatform",      "Glass Cube: Bottom Artifact"},
+            {"cornerwall",          "Glass Cube: Exit Reward"},
+
+            // Sands
+            {"upramp",              "Sands: Artifact Under South East Roof"},
+            {"towera",              "Sands: Exterior Wall Artifact"},
+            {"cornertower",         "Sands: South West Tower Artifact"},
+            {"towerd",              "Sands: Exterior Wall Tower Artifact"},
+            {"towerc",              "Sands: Artifact Inside South East Tower"},
+            {"towerb",              "Sands: Artifact Under Fallen Tower Roof"},
+            {"towerportal",         "Sands: North East Tower Artifact"},
+            {"cornertowerdoor",     "Sands: Artifact Under South West Roof"},
+            {"stonehead",           "Sands: North East Door Artifact"},
+            {"toplid",              "Sands: King Head Artifact"},
+            {"viewwall",            "Sands: Exit Reward Artifact"},
+
+            // Whales
+            {"seamesaramp",         "Ocean: Shipwreck Artifact"},
+            {"volcanoramp",         "Ocean: Top of Vulcano Artifact"},
+            {"lookoutramp",         "Ocean: Outer Fort Bottom Artifact"},
+            {"lookoutgaps",         "Ocean: Outer Fort Middle Artifact"},
+            {"smallsearamp",        "Ocean: Hill Near Portal Artifact"},
+            {"lookoutsinglegap",    "Ocean: Artifact Near Bell"},
+            {"seapinnacle",         "Ocean: Inside Fort Artifact"},
+            {"anchor",              "Ocean: Fish Circle Jump Artifact"},
+            {"canon",               "Ocean: Inside Pirate Ship Artifact"},
+            {"bell",                "Ocean: Inside Vulcano Artifact"},
+            {"ledgebridge",         "Ocean: Whale Artifact"},
+
+            // Ice
+            {"templelowblocker",    "Ice: North East Perimeter Artifact"},
+            {"templehighblocker",   "Ice: South Jump Artifact"},
+            {"hugelongramp",        "Ice: Outside West Jump Artifact"},
+            {"sliderclamp",         "Ice: North East Jump Artifact"},
+            {"walkwayblocker",      "Ice: Lowest East Jump Artifact"},
+            {"templesimpleblocker", "Ice: South East Tower Artifact"},
+            {"longtowerbridge",     "Ice: East Top Jump Artifact"},
+            {"triplebridge",        "Ice: South West Tower Artifact"},
+            {"templehighramp",      "Ice: North East Tower Artifact"},
+            {"bentbridge",          "Ice: South East Tower Jump Artifact"},
+            {"templetop",           "Ice: North East Bridge Ramp Artifact"},
+            {"treewall",            "Ice: North East Tower Interior Artifact"},
+
+            // Sheep
+            {"sheepramp",           "Sheep: West Hidden Behind Tree Artifact"},
+            {"sheeppendoor",        "Sheep: In Sheep Shed Artifact"},
+            {"windmilldoor",        "Sheep: Sheep Herder Artifact"},
+            {"sheeppen",            "Sheep: Inside Windmill Artifact"},
+            {"sheephiddendoor",     "Sheep: Raised Shed Artifact"},
+            {"unijunk",             "Sheep: Inside Raised Shed Artifact"},
+
+            // Island
+            {"seawayblock",         "Island: Spiral Island Artifact"},
+            {"underseabridge",      "Island: East Small Rock In Ocean Artifact"},
+            {"seawalkway01",        "Island: Artifact Hidden Under East Path"},
+            {"plankblocker",        "Island: East Path First Artifact"},
+            {"seacornerramp",       "Island: Raft Behind Start Artifact"},
+            {"seawalkway02",        "Island: South East Triangle Island Artifact"},
+            {"seaarchramp",         "Island: East Path Second Artifact"},
+            {"seawalkway03",        "Island: East Path North Raft Artifact"},
+            {"timedoor",            "Island: East Path South Raft Artifact"},
+            {"searockhill",         "Island: East Path End Artifact"},
+            {"seasideramp",         "Island: Shark Island Artifact"},
+            {"caveblockerchip",     "Island: East Island Ledge Artifact"},
+            {"longsearamp",         "Island: South Path Jump Artifact"},
+            {"seahole",             "Island: South East Cave Artifact"},
+            {"rockholedoor",        ""},
+            {"clam",                "Island: South Path Cave Artifact"},
+            {"waterpinnacle",       "Island: Clam Artifact"},
+            {"leftsearamp",         "Island: West Jump Artifact"},
+            {"raftdoorblocker",     "Island: North Wall Lower Artifact"},
+            {"rightsearamp",        "Island: East Path Raft Cave Artifact"},
+            {"seamonsterhump" ,     "Island: North Wall Upper Artifact"},
+            {"raftblocker",         "Island: Back Serpant Hump Artifact"},
+            {"seamonsterhead",      "Island: Second South Path Cave Artifact"},
+            {"plaque",              "Island: Serpant Head Artifact"},
+            {"treeramp",            "Island: Hut Ledge Artifact"},
+            {"seamonsterheadhump",  "Island: Night South Path Artifact"},
+            {"hutblocker",          "Island: Front Serpant Hump Artifact"},
+            {"seablocktop",         "Island: Balcony Hut Artifact"},
+            {"huttreeway",          "Island: East Ocean Jump Artifact"},
+            {"treeway",             "Island: Treetop Near Flower Artifact"},
+            {"treepondrain",        "Island: Treetop Above Pond Ramp Artifact"},
+            {"uppertreeblocker",    "Island: Drained Pond Artifact"},
+            {"hutdoor",             "Island: Treetop Inside Flower Artifact"},
+            {"islandexitramp",      "Island: Inside Hut Artifact"},
+            {"upperdoor",           "Island: Exit Reward Artifact"},
+
+            // Throne
+            {"throneleftramp",      "Throne: Behind Throne Artifact"},
+            {"thronerightramp",     "Throne: South West Trick Jump Artifact"},
+            {"thronewindow01",      "Throne: South East Trick Jump Artifact"},
+            {"thronewindow06",      "Throne: North East Window Artifact"},
+            {"thronedoorramp",      "Throne: South West Window Artifact"},
+            {"thronedoor",          "Throne: South East Window Artifact"},
+            {"thronewindow",        "Throne: Lower Garden Artifact"},
+            {"thronerightblocker",  "Throne: Hidden East Garden Artifact"},
+            {"throneleftblocker",   "Throne: Hidden West Garden Artifact"},
+            {"thronewindow03",      "Throne: Middle West Window Artifact"},
+            {"thronewindow04",      "Throne: Middle East Window Artifact"},
+            {"thronewindow05",      "Throne: South West Window Artifact"},
+            {"thronerightdoor",     "Throne: South East Window Artifact"},
+            {"throneleftdoor",      "Throne: East Exterior Wall Artifact"},
+            {"throneportalbridge",  "Throne: Exterior Corner Wall Artifact"},
+            {"thronebackcover",     "Throne: Upper Garden Artifact"},
+            {"throneramp",          "Throne: Hidden Throne Door Artifact"},
+            {"throneportalopen",    "Throne: Throne Ramp Artifact"},
+            {"thronebackcover",     "Throne: Exit Reward Artifact"},
+
+            // Planetarium
+            {"planetariumblock",    "Planetarium: Top of Portal Artifact"},
+            {"threewallrun",        "Planetarium: Top Path Artifact"},
+
+            // Power Room
+            {"greenblocker",        "Power Room: East Bottom Artifact"},
+            {"greencable",          "Power Room: Green Center Artifact"},
+            {"blueblocker",         "Power Room: Green Cable Artifact"},
+            {"bluecable",           "Power Room: Blue Center Artifact"},
+            {"redblocker",          "Power Room: Blue Cable Artifact"},
+            {"redcable",            "Power Room: Red Center Artifact"},
+            {"yellowblocker",       "Power Room: Red Cable Artifact"},
+            {"yellowcable",         "Power Room: Yellow Center Artifact"},
+            {"yellowbook",          "Power Room: Book Artifac"},
+            {"cbb",                 "Power Room: Top Artifact Near Token"},
+
+            // Limbo
+            {"yellowcrown",         "limbo: Crown Artifact"},
         };
 
         public static string getLocationName(string secretID) {
+            if(!locationMapping.ContainsKey(secretID)) {
+                return "";
+            }
+
             return locationMapping[secretID];
         }
 

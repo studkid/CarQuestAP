@@ -191,7 +191,7 @@ seamesaramp - near blockwhale bell
     raises north east ramp
 volcanoramp - on pirate ship
     Creates volcano ramp
-lookout ramp - on top of volcano
+lookoutramp - on top of volcano
     Raises ramp near fort
 lookoutgaps - pillar near fort
     Raises extior fort wall
