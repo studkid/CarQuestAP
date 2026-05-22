@@ -6,6 +6,10 @@ namespace CarQuestAP.Patches {
     public static class PrintSecret {
         [HarmonyPostfix]
         public static void PostFix(ref SecretCollect __instance) {
+            if(__instance.state == "collected") {
+                return;
+            }
+
             if(SecretHandler.getLocationName(__instance.secretID) == "") {
                 CarQuestAP._log.LogInfo($"Secret ID: {__instance.secretID} Location Name: {SecretHandler.getLocationName(__instance.secretID)}");
             }

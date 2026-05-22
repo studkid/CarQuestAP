@@ -1,9 +1,8 @@
 using System;
-using System.Collections.Generic;
 using CarQuestAP.Archipelago;
+using CarQuestAP.Helpers;
 using HarmonyLib;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace CarQuestAP.Patches {
@@ -22,8 +21,13 @@ namespace CarQuestAP.Patches {
             }
 
             if(action.Contains("Slot")) {
-                int slotNum = Convert.ToInt32(action[^1]) + 1;
+                char[] actionChar = action.ToCharArray();
+                int slotNum = int.Parse(actionChar[^1].ToString()) + 1;
                 ePlayerPrefs.SetSlot(slotNum);
+                CarQuestAP._log.LogInfo($"Trying connection on Slot {slotNum} {int.Parse(actionChar[^1].ToString())}");
+                SaveInfo info = CarQuestAP.saves[slotNum - 1].GetSaveInfo();
+                CarQuestAP._log.LogInfo($"Trying connection with {info.address}, {info.slotName}");
+                ArchipelagoClient.Connect(info.address, info.slotName, info.password);
                 return;
             }
 
@@ -54,12 +58,14 @@ namespace CarQuestAP.Patches {
 
                 if(text != null) {
                     CarQuestAP._log.LogInfo(CarQuestAP.saves[i].GetSaveInfo());
-                    text.text = CarQuestAP.saves[i].GetSaveInfo();
+                    SaveInfo info = CarQuestAP.saves[i].GetSaveInfo();
+                    text.text = $"Save Slot {info.saveSlot}: {info.slotName}\n{info.address}";
                 }
             }
+            // ConnectionUI.CreateConUI(__instance.menus[9]);
 
             // Add Item Menu
-            APItemMenu.createItemMenu(__instance);
+            // APItemMenu.createItemMenu(__instance);
 
             // Modify Pause Menu
             APItemMenu.updatePauseMenu(__instance);

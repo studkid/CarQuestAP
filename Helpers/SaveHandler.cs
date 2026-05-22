@@ -65,8 +65,8 @@ namespace CarQuestAP.Helpers {
             SaveAPSave();
         }
 
-        public string GetSaveInfo() {
-            return $"Save Slot {saveInfo.saveSlot}: {saveInfo.slotName}\n{saveInfo.address}";
+        public SaveInfo GetSaveInfo() {
+            return saveInfo;
         }
     }
 }
