@@ -15,7 +15,7 @@ namespace CarQuestAP.Patches {
                 return;
             }
 
-            if(action == "Start") {
+            if(action == "Start" && !ArchipelagoClient.isAuthenticated) {
                 __instance.MenuShow("SaveProfiles");
                 return;
             }
@@ -28,6 +28,9 @@ namespace CarQuestAP.Patches {
                 SaveInfo info = CarQuestAP.saves[slotNum - 1].GetSaveInfo();
                 CarQuestAP._log.LogInfo($"Trying connection with {info.address}, {info.slotName}");
                 ArchipelagoClient.Connect(info.address, info.slotName, info.password);
+                if(ArchipelagoClient.isAuthenticated) {
+                    __instance.DoAction("Start");
+                }
                 return;
             }
 
@@ -65,7 +68,7 @@ namespace CarQuestAP.Patches {
             // ConnectionUI.CreateConUI(__instance.menus[9]);
 
             // Add Item Menu
-            // APItemMenu.createItemMenu(__instance);
+            APItemMenu.createItemMenu(__instance);
 
             // Modify Pause Menu
             APItemMenu.updatePauseMenu(__instance);

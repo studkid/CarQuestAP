@@ -327,7 +327,7 @@ namespace CarQuestAP.Helpers {
             {"thronebackcover",     "Throne: Upper Garden Artifact"},
             {"throneramp",          "Throne: Hidden Throne Door Artifact"},
             {"throneportalopen",    "Throne: Throne Ramp Artifact"},
-            {"thronebackcover",     "Throne: Exit Reward Artifact"},
+            {"unknown",             "Throne: Exit Reward Artifact"},
 
             // Planetarium
             {"planetariumblock",    "Planetarium: Top of Portal Artifact"},
