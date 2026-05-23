@@ -65,10 +65,100 @@ namespace CarQuestAP.Helpers {
             {"Hub: Tree Area Door",                          ["treewall"]},
             {"Hub: University Portal Buttons",               ["unijunk"]},
             {"Hub: Throne Room Door",                        ["upperdoor"]},
-            {"Hub: Power Room South Door",                   ["thronebackcover"]},
+            {"Hub: Power Room South Door",                   ["threewaywall"]},
             {"Hub: University Portal Planetarium Access",    ["uniportalupgrade"]},
             {"Hub: Power Room North Door",                   ["threewallrun"]},
             {"Hub: World Peace",                             ["brickbristles"]},
+
+            // Hub Museum
+            {"Hub: Sun Museum Glass",                        ["stainedglass01"]},
+            {"Hub: Block Museum Glass",                      ["stainedglass03"]},
+            {"Hub: Book Museum Glass",                       ["stainedglass08"]},
+            {"Hub: Energy Cell Museum Glass",                ["stainedglass05"]},
+            {"Hub: Tire Museum Glass",                       ["stainedglass02"]},
+            {"Hub: Blockstar Museum Glass",                  ["stainedglass10"]},
+            {"Hub: Tree Museum Glass",                       ["stainedglass04"]},
+            {"Hub: Cube Museum Glass",                       ["stainedglass09"]},
+            {"Hub: Portal Museum Glass",                     ["stainedglass06"]},
+            {"Hub: Brick Bristles Museum Glass",             ["stainedglass07"]},
+
+            // Simple
+            {"Simple: Exit Bridge",                          ["exitramp"]},
+
+            // Cubes
+            {"Cubes: Exit Bridge",                           ["blockspinplatform"]},
+
+            // Desert
+            {"Desert: South West Mound",                     ["mesaramp"]},
+            {"Desert: Shop Cave Door",                       ["cavedoor"]},
+            {"Desert: North West Mound",                     ["mesaplatfor"]},
+            {"Desert: South East Mound",                     ["mesa"]},
+            {"Desert: Fixit Shop Door",                      ["fixitdoor"]},
+            {"Desert: Fixit Shop Fence",                     ["fence"]},
+            {"Desert: Exit Ramp",                            ["portalramp"]},
+
+            // Slider
+            {"Slider: Start Ramp",                           ["sliderramp"]},
+            {"Slider: Left Push Block Unlock",               ["pushleft"]},
+            {"Slider: Right Push Block Unlock",              ["pushright"]},
+            {"Slider: Left Side Ramp",                       ["sliderbigramp"]},
+            {"Slider: Exit Ramp Unlock",                     ["sliderstopper"]},
+
+            // Maze
+            {"Maze: Door to Big Ramp",                       ["mazewall"]},
+            {"Maze: Hedge Ramp",                             ["mazeramp"]},
+            {"Maze: Raise Cave Wall",                        ["mazebridge"]},
+            {"Maze: Lower Artifact Wall",                    ["mazedoor"]},
+            {"Maze: Interior Wall Bridge",                   ["mazeblock"]},
+            {"Maze: Exit Door",                              ["endmazebridge"]},
+
+            // Glass
+            {"Glass Box: Useless Block",                    ["firstplatform"]},
+            {"Glass Box: Exit Bridge",                      ["secondplatform"]},
+
+            // Sands
+            {"Sands: Exterior Walls Access",                ["upramp"]},
+            {"Sands: Lower South West Tower",               ["towera"]},
+            {"Sands: Lower North West Tower",               ["cornertower"]},
+            {"Sands: South East Tower Access",              ["towerd"]},
+            {"Sands: Move Fallen Tower Roof",               ["towerc"]},
+            {"Sands: Raise Exit Platform",                  ["towerb"]},
+            {"Sands: North East Door",                      ["towerportal"]},
+            {"Sands: Reveal King Artifact",                 ["cornertowerdoor"]},
+            {"Sands: Exit Reward Reveal",                   ["stonehead"]},
+            {"Sands: Lower North West Tower",               ["toplid"]},
+
+            // Ocean
+            {"Ocean: Vulcano Slope",                        ["seamesaramp"]},
+            {"Ocean: Fort Bottom Ramp",                     ["volcanoramp"]},
+            {"Ocean: Fort Middle Ramp",                     ["lookoutramp"]},
+            {"Ocean: Raise Hill Near Exit",                 ["lookoutgaps"]},
+            {"Ocean: Fort Top Ramp",                        ["smallsearamp"]},
+            {"Ocean: Raise Fish Ring Rock",                 ["lookoutsinglegap"]},
+            {"Ocean: Raise Fish Ring Ramp",                 ["seapinnacle"]},
+            {"Ocean: Pirate Ship Repair",                   ["anchor"]},
+            {"Ocean: Shoot Cannon",                         ["canon"]},
+            {"Ocean: Ring Bell",                            ["bell"]},
+
+            // Ice Temple
+            {"Ice: West Artifact Blocker",                  ["templelowblocker"]},
+            {"Ice: South Ramp Blocker",                     ["templehighblocker"]},
+            {"Ice: Secondary Wall Ramp",                    ["hugelongramp"]},
+            {"Ice: Ice Pillar Blocker",                     ["sliderclamp"]},
+            {"Ice: Perimeter Wall Blocker",                 ["walkwayblocker"]},
+            {"Ice: South Jump Path Wall",                   ["templesimpleblocker"]},
+            {"Ice: South Wall Bridge",                      ["longtowerbridge"]},
+            {"Ice: Other Wall Bridges",                     ["triplebridge"]},
+            {"Ice: Wall Jump Ramp",                         ["templehighramp"]},
+            {"Ice: Wall Bridge Ramp to Monument",           ["bentbridge"]},
+            {"Ice: Raise North East Tower",                 ["templetop"]},
+
+            // Sheep
+            {"Sheep: Shed Ramp",                            ["sheepramp"]},
+            {"Sheep: Sheep Shed Door",                      ["sheeppendoor"]},
+            {"Sheep: Windmill Activation",                  ["windmilldoor"]},
+            {"Sheep: Raise Shed",                           ["sheeppen"]},
+            {"Sheep: Raised Shed Hidden Wall",              ["sheephiddendoor"]},
 
             // Island
             {"Island: East Long Path Start Wall",            ["seawayblock"]},
@@ -104,21 +194,45 @@ namespace CarQuestAP.Helpers {
             {"Island: Pond Drain",                           ["treepondrain"]},
             {"Island: Pond Treetop Ramp Blocker",            ["uppertreeblocker"]},
             {"Island: Open Hut Door",                        ["hutdoor"]},
-            {"Island: Exit Ramp",                            ["islandexitramp"]}
-        };
+            {"Island: Exit Ramp",                            ["islandexitramp"]},
 
-        private static Dictionary<string, List<string>>  museumSecretMapping = new Dictionary<string, List<string>>() {
-            // Hub Museum
-            {"Hub: Sun Museum Glass",                        ["stainedglass01"]},
-            {"Hub: Block Museum Glass",                      [""]},
-            {"Hub: Book Museum Glass",                       [""]},
-            {"Hub: Energy Cell Museum Glass",                [""]},
-            {"Hub: Tire Museum Glass",                       [""]},
-            {"Hub: Blockstar Museum Glass",                  [""]},
-            {"Hub: Tree Museum Glass",                       [""]},
-            {"Hub: Cube Museum Glass",                       [""]},
-            {"Hub: Portal Museum Glass",                     ["stainedglass07"]},
-            {"Hub: Brick Bristles Museum Glass",             [""]},
+            // Throne
+            {"Throne: Interior South West Ramp",            ["throneleftramp"]},
+            {"Throne: Interior South East Ramp",            ["thronerightramp"]},
+            {"Throne: Open North Windows",                  ["thronewindow01"]},
+            {"Throne: Open South Windows",                  ["thronewindow06"]},
+            {"Throne: Open Main Door",                      ["thronedoorramp"]},
+            {"Throne: Main Door Ramp",                      ["thronedoor"]},
+            {"Throne: West Middle Window",                  ["thronewindow02"]},
+            {"Throne: West Push Ramp",                      ["thronerightblocker"]},
+            {"Throne: East Middle Window",                  ["throneleftblocker"]},
+            {"Throne: East Push Ramp",                      ["thronewindow03"]},
+            {"Throne: West South Window",                   ["thronewindow04"]},
+            {"Throne: East South Window",                   ["thronewindow05"]},
+            {"Throne: East Exterior Wall",                  ["thronerightdoor"]},
+            {"Throne: West Exterior Wall",                  ["throneleftdoor"]},
+            {"Throne: Lower High Garden Exit Ledge",        ["throneportalbridge"]},
+            {"Throne: North Throne Hidden Door",            ["thronebackcover"]},
+            {"Throne: Throne Ramp",                         ["throneramp"]},
+            {"Throne: Exit Portal",                         ["throneportalopen"]},
+
+            // Planetarium
+            {"Planetarium: Elevator Access",                ["planetariumblock"]},
+
+            // Power Room
+            {"Power Room: Green Cable Push",                ["greenblocker"]},
+            {"Power Room: Green Cable Activate",            ["greencable"]},
+            {"Power Room: Blue Cable Push",                 ["blueblocker"]},
+            {"Power Room: Blue Cable Activate",             ["bluecable"]},
+            {"Power Room: Red Cable Push",                  ["redblocker"]},
+            {"Power Room: Red Cable Activate",              ["redcable"]},
+            {"Power Room: Yellow Cable Push",               ["yellowblocker"]},
+            {"Power Room: Yellow Cable Activate",           ["yellowcable"]},
+            {"Hub: Power Restore",                          ["yellowbook"]},
+            {"Power Room: Exit Teleporter",                 ["cbb"]},
+
+            // Limbo
+            {"Limbo: Crown and Exit Portal", ["yellowcrown"]},
         };
 
         private static Dictionary<string, string> locationMapping = new Dictionary<string, string>() {
@@ -203,19 +317,19 @@ namespace CarQuestAP.Helpers {
 
             // Slider
             {"sliderramp",          "Slider: Front Right Artifact"},
-            {"pushleft" ,           "Slider: Lower Back Artifact"},
-            {"pushright" ,          "Slider: Upper Left Artifact"},
-            {"sliderbigramp" ,      "Slider: Upper Right Artifact"},
-            {"sliderstopper" ,      "Slider: Upper Upper Left Artifact"},
-            {"poolrefill" ,         "Slider: Exit Reward Artifact"},
+            {"pushleft",            "Slider: Lower Back Artifact"},
+            {"pushright",           "Slider: Upper Left Artifact"},
+            {"sliderbigramp",       "Slider: Upper Right Artifact"},
+            {"sliderstopper",       "Slider: Upper Upper Left Artifact"},
+            {"poolrefill",          "Slider: Exit Reward Artifact"},
 
             // Maze
-            {"mazewall" ,           "Maze: First Artifact"},
-            {"mazeramp" ,           "Maze: On Wall Near Start Artifact"},
-            {"mazebridge" ,         "Maze: Cave Artifact"},
-            {"mazedoor" ,           "Maze: Top of Mini Maze Artifact"},
-            {"mazeblock" ,          "Maze: Hidden Drop Off Artifact"},
-            {"endmazebridge" ,      "Maze: On Wall Near Exit Artifact"},
+            {"mazewall",            "Maze: First Artifact"},
+            {"mazeramp",            "Maze: On Wall Near Start Artifact"},
+            {"mazebridge",          "Maze: Cave Artifact"},
+            {"mazedoor",            "Maze: Top of Mini Maze Artifact"},
+            {"mazeblock",           "Maze: Hidden Drop Off Artifact"},
+            {"endmazebridge",       "Maze: On Wall Near Exit Artifact"},
             {"uniwall",             "Maze: Exit Reward Artifact"},
 
             // Glass
@@ -249,6 +363,8 @@ namespace CarQuestAP.Helpers {
             {"bell",                "Ocean: Inside Vulcano Artifact"},
             {"ledgebridge",         "Ocean: Whale Artifact"},
 
+            {"stainedglass04",      "Ocean: Vulcano Museum Piece"},
+
             // Ice
             {"templelowblocker",    "Ice: North East Perimeter Artifact"},
             {"templehighblocker",   "Ice: South Jump Artifact"},
@@ -262,6 +378,8 @@ namespace CarQuestAP.Helpers {
             {"bentbridge",          "Ice: South East Tower Jump Artifact"},
             {"templetop",           "Ice: North East Bridge Ramp Artifact"},
             {"treewall",            "Ice: North East Tower Interior Artifact"},
+
+            {"stainedglass09",      "Ice: North East Tower Interior Museum Piece"},
 
             // Sheep
             {"sheepramp",           "Sheep: West Hidden Behind Tree Artifact"},
@@ -315,7 +433,7 @@ namespace CarQuestAP.Helpers {
             {"thronewindow06",      "Throne: North East Window Artifact"},
             {"thronedoorramp",      "Throne: South West Window Artifact"},
             {"thronedoor",          "Throne: South East Window Artifact"},
-            {"thronewindow",        "Throne: Lower Garden Artifact"},
+            {"thronewindow02",      "Throne: Lower Garden Artifact"},
             {"thronerightblocker",  "Throne: Hidden East Garden Artifact"},
             {"throneleftblocker",   "Throne: Hidden West Garden Artifact"},
             {"thronewindow03",      "Throne: Middle West Window Artifact"},
@@ -327,11 +445,14 @@ namespace CarQuestAP.Helpers {
             {"thronebackcover",     "Throne: Upper Garden Artifact"},
             {"throneramp",          "Throne: Hidden Throne Door Artifact"},
             {"throneportalopen",    "Throne: Throne Ramp Artifact"},
-            {"unknown",             "Throne: Exit Reward Artifact"},
+            {"threewaywall",        "Throne: Exit Reward Artifact"},
+
+            {"stainedglass08",      "Throne: Brick Bristles' Museum Piece"},
 
             // Planetarium
             {"planetariumblock",    "Planetarium: Top of Portal Artifact"},
             {"threewallrun",        "Planetarium: Top Path Artifact"},
+            {"stainedglass07",      "Planetarium: X Puzzle Museum Piece"},
 
             // Power Room
             {"greenblocker",        "Power Room: East Bottom Artifact"},
