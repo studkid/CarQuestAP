@@ -369,5 +369,18 @@ namespace CarQuestAP.Helpers {
 
             return new List<string>();
         }
+
+        public static void unlockSecret(string locName, int count) {
+            List<string> secretIDs = locToSecretID(locName);
+
+            if(!secretIDs.Any()) {
+                CarQuestAP._log.LogError($"{locName} has no secret mapped!");
+                return;
+            }
+
+            CarQuestAP._log.LogInfo($"Unlocking {secretIDs[count-1]} ({locName})");
+            eSecret.SetValue("ap_" + secretIDs[count - 1], 1, true);
+            CarQuestAP.saves[0].AddNewSecret(secretIDs[count - 1]);
+        }
     }
 }

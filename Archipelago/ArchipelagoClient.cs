@@ -4,6 +4,8 @@ using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using Archipelago.MultiClient.Net.Models;
 using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Helpers;
+using System.Collections.Generic;
+using CarQuestAP.Helpers;
 
 namespace CarQuestAP.Archipelago {
     public static class ArchipelagoClient {
@@ -16,10 +18,11 @@ namespace CarQuestAP.Archipelago {
         public static ArchipelagoSession session;
         public static bool deathLinkStatus = false;
         public static DeathLinkService deathLinkService;
+        public static Dictionary<string, int> itemsRecieved = new Dictionary<string, int>();
         
         public static bool Connect(string address, string slot, string password) {
             if(isAuthenticated) {
-                return true; // Probably won't ever run tbh
+                return true;
             }
 
             session = ArchipelagoSessionFactory.CreateSession(address);
@@ -45,7 +48,28 @@ namespace CarQuestAP.Archipelago {
         }
 
         private static void Session_ItemReceived(ReceivedItemsHelper helper) {
+            ItemInfo item = helper.DequeueItem();
             
+            if(itemsRecieved.ContainsKey(item.ItemName)) {
+                itemsRecieved[item.ItemName]++;
+            }
+            else {
+                itemsRecieved[item.ItemName] = 1;
+            }
+
+            SecretHandler.unlockSecret(item.ItemName, itemsRecieved[item.ItemName]);
+        }
+
+        public static void sendLocation(string locName) {
+            long locID = session.Locations.GetLocationIdFromName(GAME_NAME, locName);
+
+            if(locID != -1) {
+                CarQuestAP._log.LogInfo($"Sending {locName} [{locID}]");
+                session.Locations.CompleteLocationChecksAsync(locID);
+            }
+            else {
+                CarQuestAP._log.LogError($"{locName} location not found!");
+            }
         }
     }
 }

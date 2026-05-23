@@ -20,6 +20,6 @@ public class CarQuestAP : BasePlugin {
         _log.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
         harmony.PatchAll();
         _log.LogInfo("Harmony patches applied!");
-        saves.Add(new SaveHandler("localhost", "Player1", "", 1));
+        saves.Add(new SaveHandler("localhost", "Player2", "", 1));
     }
 }

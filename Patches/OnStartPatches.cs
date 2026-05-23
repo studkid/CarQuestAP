@@ -34,10 +34,10 @@ namespace CarQuestAP.Patches {
                 return;
             }
 
-            // if(action == "Start") {
-            //     eSecret.DeleteAll();
-            //     CarQuestAP.saveHandler.LoadAPSave();
-            // }
+            if(action == "Start") {
+                eSecret.DeleteAll();
+                // CarQuestAP.saveHandler.LoadAPSave();
+            }
 
             if(action == "SaveProfiles") {
                 __instance.MenuShow("ItemMenu");

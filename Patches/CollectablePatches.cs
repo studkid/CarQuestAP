@@ -1,23 +1,49 @@
 using HarmonyLib;
 using CarQuestAP.Helpers;
+using CarQuestAP.Archipelago;
 
 namespace CarQuestAP.Patches {
     [HarmonyPatch(typeof(SecretCollect), "OnTriggerEnter")]
-    public static class PrintSecret {
+    public static class SecretCollectSend {
         [HarmonyPostfix]
         public static void PostFix(ref SecretCollect __instance) {
-            if(__instance.state == "collected") {
+            if(__instance.state != "collected") {
                 return;
             }
 
-            if(SecretHandler.getLocationName(__instance.secretID) == "") {
+            if(SecretHandler.getLocationName(__instance.secretID) != "") {
                 CarQuestAP._log.LogInfo($"Secret ID: {__instance.secretID} Location Name: {SecretHandler.getLocationName(__instance.secretID)}");
+                ArchipelagoClient.sendLocation(SecretHandler.getLocationName(__instance.secretID));
             }
             else {
                 CarQuestAP._log.LogError($"Secret ID: {__instance.secretID} Not Mapped!");
             }
             
-            CarQuestAP.saves[0].AddNewSecret(__instance.secretID);
+            // CarQuestAP.saves[0].AddNewSecret(__instance.secretID);
+        }
+
+        // [HarmonyPrefix]
+        // public static void PreFix(ref SecretCollect __instance) {
+        //     if(__instance.state == "collected") {
+        //         return;
+        //     }
+        // }
+    }
+
+    [HarmonyPatch(typeof(eSecret), "SetValue")]
+    public static class eSecretChangeList {
+        [HarmonyPrefix]
+        public static void PreFix(ref string key, ref int value, ref bool addChangeList) {
+            CarQuestAP._log.LogInfo($"[SetValue] {key}");
+            if(key.Contains("ap_")) {
+                key = key.Substring(3);
+                CarQuestAP._log.LogInfo($"[SetValue] {key}");
+            }
+            else {
+                value = 0;
+                addChangeList = false;
+                return;
+            }
         }
     }
 
