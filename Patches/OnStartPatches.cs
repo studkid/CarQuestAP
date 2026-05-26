@@ -1,4 +1,3 @@
-using System;
 using CarQuestAP.Archipelago;
 using CarQuestAP.Helpers;
 using HarmonyLib;
@@ -40,7 +39,15 @@ namespace CarQuestAP.Patches {
             }
 
             if(action == "SaveProfiles") {
+                APItemMenu.updateItemMenu();
                 __instance.MenuShow("ItemMenu");
+                return;
+            }
+
+            if(action == "ToggleWallRun") {
+                GameControl gc = Object.FindObjectOfType<GameControl>();
+                CarQuestAP._log.LogInfo(gc.gameObject.GetComponent<Portal>().name);
+                gc.EnterPortal(gc.gameObject.GetComponent<Portal>());
                 return;
             }
         }

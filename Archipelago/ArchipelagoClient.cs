@@ -6,6 +6,7 @@ using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Helpers;
 using System.Collections.Generic;
 using CarQuestAP.Helpers;
+using HarmonyLib;
 
 namespace CarQuestAP.Archipelago {
     public static class ArchipelagoClient {

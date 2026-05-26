@@ -2,23 +2,26 @@ using UnityEngine;
 using UnityEngine.UI;
 using CarQuestAP.Helpers;
 using UnityEngine.Events;
+using System.Collections.Generic;
 
 namespace CarQuestAP.Archipelago {
     public static class APItemMenu {
+        private static Dictionary<string, GameObject> buttons = new Dictionary<string, GameObject>();
+
         public static void createItemMenu(Menu __instance) {
             // Create Menu object and Dropdown
             GameObject menu = __instance.gameObject;
             GameObject itemMenu = Object.Instantiate(__instance.menus[11].gameObject);
             itemMenu.name = "ItemMenu";
 
-            itemMenu.transform.GetChild(0).gameObject.name = "Top";
-            GameObject dropDown = itemMenu.transform.GetChild(0).GetChild(0).gameObject;
-            dropDown.GetComponent<Dropdown>().ClearOptions();
-            Il2CppSystem.Collections.Generic.List<string> options = new Il2CppSystem.Collections.Generic.List<string>();
-            options.Add("Hub");
-            dropDown.GetComponent<Dropdown>().AddOptions(options);
+            // itemMenu.transform.GetChild(0).gameObject.name = "Top";
+            // GameObject dropDown = itemMenu.transform.GetChild(0).GetChild(0).gameObject;
+            // dropDown.GetComponent<Dropdown>().ClearOptions();
+            // Il2CppSystem.Collections.Generic.List<string> options = new Il2CppSystem.Collections.Generic.List<string>();
+            // options.Add("Hub");
+            // dropDown.GetComponent<Dropdown>().AddOptions(options);
 
-            Object.Destroy(dropDown.GetComponent<SecretDropdown>());
+            // Object.Destroy(dropDown.GetComponent<SecretDropdown>());
 
             // Create Buttons
             GameObject itemTrans = Object.Instantiate(__instance.menus[10].GetChild(0).gameObject);
@@ -52,6 +55,8 @@ namespace CarQuestAP.Archipelago {
                 Object.Destroy(newTransBtn.transform.GetChild(0).GetComponent<DisplayDataUI>());
                 Button newBtn = newTransBtn.AddComponent<Button>();
                 newBtn.onClick.AddListener((UnityAction)delegate{toggleSecret(secret);});
+                newTransBtn.SetActive(false);
+                buttons[secret] = newTransBtn;
 
                 newTransBtn.transform.SetParent(itemTrans.transform);
             }
@@ -65,17 +70,33 @@ namespace CarQuestAP.Archipelago {
         }
 
         public static void updatePauseMenu(Menu __instance) {
-            Transform pauseMenuTrans = __instance.menus[3].GetChild(1).GetChild(7);
-            pauseMenuTrans.gameObject.SetActive(true);
-            CarQuestAP._log.LogInfo(pauseMenuTrans.GetChild(0).GetComponent<Text>().text);
-            pauseMenuTrans.GetChild(0).GetComponent<Text>().text = "Recieved Items";
-            CarQuestAP._log.LogInfo(pauseMenuTrans.GetChild(0).GetComponent<Text>().text);
-            Object.Destroy(pauseMenuTrans.GetChild(0).GetComponent<TranslateUI>());
+            Transform saveProfileTrans = __instance.menus[3].GetChild(1).GetChild(7);
+            saveProfileTrans.gameObject.SetActive(true);
+            saveProfileTrans.GetChild(0).GetComponent<Text>().text = "Recieved Items";
+            Object.Destroy(saveProfileTrans.GetChild(0).GetComponent<TranslateUI>());
+
+            Transform toggleHintsTrans = __instance.menus[3].GetChild(1).GetChild(12);
+            toggleHintsTrans.gameObject.SetActive(true);
+            toggleHintsTrans.GetChild(0).GetComponent<Text>().text = "Warp to Start";
+            Object.Destroy(toggleHintsTrans.GetChild(0).GetComponent<DisplayDataUI>());
+        }
+
+        public static void updateItemMenu() {
+            foreach(string key in ArchipelagoClient.itemsRecieved.Keys) {
+                if(buttons.ContainsKey(key)) {
+                    buttons[key].SetActive(true);
+                }
+            }
         }
 
         public static void toggleSecret(string locName) {
-            CarQuestAP._log.LogInfo("Button Pressed!");
-            eSecret.AddChangeList(SecretHandler.locToSecretID(locName)[0]);
+            int value = eSecret.GetValue(SecretHandler.locToSecretID(locName)[0]);
+            if(value == 0) {
+                eSecret.SetValue("ap_" + SecretHandler.locToSecretID(locName)[0], 1, true);
+            }
+            else {
+                eSecret.SetValue("ap_" + SecretHandler.locToSecretID(locName)[0], 0, true);
+            }
         }
     }
 }

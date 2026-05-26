@@ -126,7 +126,7 @@ namespace CarQuestAP.Helpers {
             {"Sands: North East Door",                      ["towerportal"]},
             {"Sands: Reveal King Artifact",                 ["cornertowerdoor"]},
             {"Sands: Exit Reward Reveal",                   ["stonehead"]},
-            {"Sands: Lower North West Tower",               ["toplid"]},
+            // {"Sands: Lower North West Tower",               ["toplid"]},
 
             // Ocean
             {"Ocean: Vulcano Slope",                        ["seamesaramp"]},
@@ -500,7 +500,7 @@ namespace CarQuestAP.Helpers {
             }
 
             CarQuestAP._log.LogInfo($"Unlocking {secretIDs[count-1]} ({locName})");
-            eSecret.SetValue("ap_" + secretIDs[count - 1], 1, true);
+            // eSecret.SetValue("ap_" + secretIDs[count - 1], 1, true);
             CarQuestAP.saves[0].AddNewSecret(secretIDs[count - 1]);
         }
     }
