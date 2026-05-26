@@ -50,6 +50,7 @@ namespace CarQuestAP.Archipelago {
 
         private static void Session_ItemReceived(ReceivedItemsHelper helper) {
             ItemInfo item = helper.DequeueItem();
+            CarQuestAP._log.LogInfo($"Received {item.ItemName} ({item.ItemId})");
             
             if(itemsRecieved.ContainsKey(item.ItemName)) {
                 itemsRecieved[item.ItemName]++;

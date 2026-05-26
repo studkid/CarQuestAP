@@ -52,7 +52,7 @@ namespace CarQuestAP.Helpers {
             {"Hub: Bottom Path Floating Islands",            ["floatingrocks"]},
             {"Hub: Lookout Long Path Door",                  ["ledgebridge"]},
             {"Hub: Whales and Central Dead End Door",        ["anotherdeadendwall"]},
-            {"Hub: Start Outlook Door",                      ["frontledge"]},
+            {"Hub: Start Lookout Door",                      ["frontledge"]},
             {"Hub: University Doors",                        ["templedoor"]},
             {"Hub: University Back Row Ramp",                ["uniramp"]},
             {"Hub: University Lower Second Row Ramp",        ["unichair"]},
