@@ -4,15 +4,14 @@ using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using Archipelago.MultiClient.Net.Models;
 using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Helpers;
+using Archipelago.MultiClient.Net.Packets;
 using System.Collections.Generic;
 using CarQuestAP.Helpers;
-using HarmonyLib;
-using System;
 
 namespace CarQuestAP.Archipelago {
     public static class ArchipelagoClient {
         public static int[] AP_VERSION = {0, 6, 1};
-        public const string GAME_NAME = "Car Quest Deluxe";
+        public const string GAME_NAME = "Secret Game";
 
         public static ConcurrentQueue<ItemInfo> _itemQueue = new();
         public static bool isAuthenticated = false;
@@ -79,6 +78,12 @@ namespace CarQuestAP.Archipelago {
             else {
                 CarQuestAP._log.LogError($"{locName} location not found!");
             }
+        }
+
+        public static void goalGame() {
+            var statusUpdatePacket = new StatusUpdatePacket();
+            statusUpdatePacket.Status = ArchipelagoClientState.ClientGoal;
+            session.Socket.SendPacket(statusUpdatePacket);
         }
     }
 }

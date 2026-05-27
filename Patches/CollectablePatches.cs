@@ -71,4 +71,14 @@ namespace CarQuestAP.Patches {
             CarQuestAP.saves[0].AddBattery(howMuch);
         }
     }
+
+    [HarmonyPatch(typeof(Portal), "OnTriggerEnter")]
+    public static class GoalChecker {
+        [HarmonyPostfix]
+        public static void PostFix(ref Portal __instance) {
+            if(__instance.name == "PortalLeave" || __instance.name == "PortalStay") {
+                ArchipelagoClient.goalGame();
+            }
+        }
+    }
 }
