@@ -11,6 +11,7 @@ namespace CarQuestAP;
 public class CarQuestAP : BasePlugin {
     public static ManualLogSource _log;
     public static List<SaveHandler> saves = new List<SaveHandler>();
+    public static int saveSlot = 0;
 
     public override void Load() {
         var harmony = new Harmony("Archipelago");

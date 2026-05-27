@@ -14,6 +14,7 @@ namespace CarQuestAP.Patches {
             if(SecretHandler.getLocationName(__instance.secretID) != "") {
                 CarQuestAP._log.LogInfo($"Secret ID: {__instance.secretID} Location Name: {SecretHandler.getLocationName(__instance.secretID)}");
                 ArchipelagoClient.sendLocation(SecretHandler.getLocationName(__instance.secretID));
+                CarQuestAP.saves[CarQuestAP.saveSlot].AddNewLocation(__instance.secretID);
             }
             else {
                 CarQuestAP._log.LogError($"Secret ID: {__instance.secretID} Not Mapped!");

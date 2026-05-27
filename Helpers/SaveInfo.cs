@@ -7,6 +7,7 @@ namespace CarQuestAP.Helpers {
         public string slotName { get; set; }
         public string password { get; set; }
         public Dictionary<string, int> secrets { get; set; }
+        public List<string> collectedLocations { get; set; }
         public int tokens { get; set; } 
         public int batteries { get; set; }
     }

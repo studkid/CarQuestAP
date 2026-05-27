@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
@@ -15,6 +16,7 @@ namespace CarQuestAP.Helpers {
                 slotName = slotName,
                 password = password,
                 secrets = new Dictionary<string, int>(),
+                collectedLocations = new List<string>(),
                 tokens = 0,
                 batteries = 0,
             };
@@ -55,13 +57,23 @@ namespace CarQuestAP.Helpers {
             }
         }
 
+        public void AddNewLocation(string secretID) {
+            if(!saveInfo.collectedLocations.Contains(secretID)) {
+                saveInfo.collectedLocations.Add(secretID);
+            }
+        }
+
+        public bool LocationChecked(string secretId) {
+            return saveInfo.collectedLocations.Contains(secretId);
+        }
+
         public void AddToken(int amount) {
             saveInfo.tokens =+ amount;
             SaveAPSave();
         }
 
         public void AddBattery(int amount) {
-            saveInfo.batteries =+ amount;
+            saveInfo.batteries =+ Math.Max(amount, 0);
             SaveAPSave();
         }
 
