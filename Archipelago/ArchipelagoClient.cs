@@ -7,6 +7,7 @@ using Archipelago.MultiClient.Net.Helpers;
 using System.Collections.Generic;
 using CarQuestAP.Helpers;
 using HarmonyLib;
+using System;
 
 namespace CarQuestAP.Archipelago {
     public static class ArchipelagoClient {
@@ -59,7 +60,13 @@ namespace CarQuestAP.Archipelago {
                 itemsRecieved[item.ItemName] = 1;
             }
 
-            SecretHandler.unlockSecret(item.ItemName, itemsRecieved[item.ItemName]);
+            if(item.ItemId < 500) {
+                SecretHandler.unlockSecret(item.ItemName, itemsRecieved[item.ItemName]);
+            }
+
+            if(item.ItemId == 10001) UnityEngine.Object.FindObjectOfType<GameControl>().AddCoin(1);
+            if(item.ItemId == 10002) UnityEngine.Object.FindObjectOfType<GameControl>().AddCoin(25);
+            if(item.ItemId == 10003) UnityEngine.Object.FindObjectOfType<GameControl>().AddCoin(50);
         }
 
         public static void sendLocation(string locName) {
