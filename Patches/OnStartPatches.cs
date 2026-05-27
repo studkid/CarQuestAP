@@ -60,6 +60,9 @@ namespace CarQuestAP.Patches {
             if(!CarQuestAP.saves[CarQuestAP.saveSlot].LocationChecked(__instance.secretID)) {
                 __instance.secretObject.SetActive(true);
             }
+            else {
+                __instance.secretObject.SetActive(false);
+            }
         }
     }
 
