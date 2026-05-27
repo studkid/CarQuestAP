@@ -10,7 +10,7 @@ using CarQuestAP.Helpers;
 
 namespace CarQuestAP.Archipelago {
     public static class ArchipelagoClient {
-        public static int[] AP_VERSION = {0, 6, 1};
+        public static int[] AP_VERSION = {0, 6, 7};
         public const string GAME_NAME = "Secret Game";
 
         public static ConcurrentQueue<ItemInfo> _itemQueue = new();
@@ -81,8 +81,9 @@ namespace CarQuestAP.Archipelago {
         }
 
         public static void goalGame() {
-            var statusUpdatePacket = new StatusUpdatePacket();
-            statusUpdatePacket.Status = ArchipelagoClientState.ClientGoal;
+            var statusUpdatePacket = new StatusUpdatePacket {
+                Status = ArchipelagoClientState.ClientGoal
+            };
             session.Socket.SendPacket(statusUpdatePacket);
         }
     }

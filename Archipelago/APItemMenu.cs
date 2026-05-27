@@ -7,6 +7,8 @@ using System.Collections.Generic;
 namespace CarQuestAP.Archipelago {
     public static class APItemMenu {
         private static Dictionary<string, GameObject> buttons = new Dictionary<string, GameObject>();
+        private static Sprite normalButton;
+        private static Sprite cheatButton;
 
         public static void createItemMenu(Menu __instance) {
             // Create Menu object and Dropdown
@@ -54,7 +56,7 @@ namespace CarQuestAP.Archipelago {
                 newTransBtn.transform.GetChild(0).GetComponent<Text>().text = secret;
                 Object.Destroy(newTransBtn.transform.GetChild(0).GetComponent<DisplayDataUI>());
                 Button newBtn = newTransBtn.AddComponent<Button>();
-                newBtn.onClick.AddListener((UnityAction)delegate{toggleSecret(secret);});
+                newBtn.onClick.AddListener((UnityAction)delegate{toggleSecret(secret, newTransBtn.GetComponent<Image>());});
                 newTransBtn.SetActive(false);
                 buttons[secret] = newTransBtn;
 
@@ -74,11 +76,13 @@ namespace CarQuestAP.Archipelago {
             saveProfileTrans.gameObject.SetActive(true);
             saveProfileTrans.GetChild(0).GetComponent<Text>().text = "Recieved Items";
             Object.Destroy(saveProfileTrans.GetChild(0).GetComponent<TranslateUI>());
+            normalButton = saveProfileTrans.GetComponent<Image>().activeSprite;
 
             Transform toggleHintsTrans = __instance.menus[3].GetChild(1).GetChild(12);
             toggleHintsTrans.gameObject.SetActive(true);
             toggleHintsTrans.GetChild(0).GetComponent<Text>().text = "Warp to Start";
             Object.Destroy(toggleHintsTrans.GetChild(0).GetComponent<DisplayDataUI>());
+            cheatButton = toggleHintsTrans.GetComponent<Image>().activeSprite;
         }
 
         public static void updateItemMenu() {
@@ -89,13 +93,15 @@ namespace CarQuestAP.Archipelago {
             }
         }
 
-        public static void toggleSecret(string locName) {
+        public static void toggleSecret(string locName, Image image) {
             int value = eSecret.GetValue(SecretHandler.locToSecretID(locName)[0]);
             if(value == 0) {
                 eSecret.SetValue("ap_" + SecretHandler.locToSecretID(locName)[0], 1, true);
+                image.sprite = cheatButton;
             }
             else {
                 eSecret.SetValue("ap_" + SecretHandler.locToSecretID(locName)[0], 0, true);
+                image.sprite = normalButton;
             }
         }
     }
