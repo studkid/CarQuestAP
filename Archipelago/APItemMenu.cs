@@ -86,7 +86,7 @@ namespace CarQuestAP.Archipelago {
         }
 
         public static void updateItemMenu() {
-            foreach(string key in ArchipelagoClient.itemsRecieved.Keys) {
+            foreach(string key in CarQuestAP.apClient.itemsRecieved.Keys) {
                 if(buttons.ContainsKey(key)) {
                     buttons[key].SetActive(true);
                 }

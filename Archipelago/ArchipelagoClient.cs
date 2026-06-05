@@ -8,22 +8,25 @@ using Archipelago.MultiClient.Net.Packets;
 using System.Collections.Generic;
 using CarQuestAP.Helpers;
 using HarmonyLib;
+using UnityEngine;
+using System;
 
 namespace CarQuestAP.Archipelago {
-    public static class ArchipelagoClient {
+    public class ArchipelagoClient : MonoBehaviour {
+        public ArchipelagoClient(IntPtr ptr) : base(ptr) {}
+
         public static int[] AP_VERSION = {0, 6, 7};
         public const string GAME_NAME = "Secret Game";
 
-        public static ConcurrentQueue<ItemInfo> _itemQueue = new();
-        public static bool isAuthenticated = false;
-        public static int slotID;
-        public static ArchipelagoSession session;
-        public static bool deathLinkStatus = false;
-        public static DeathLinkService deathLinkService;
-        public static Dictionary<string, int> itemsRecieved = new Dictionary<string, int>();
-        public static ConcurrentQueue<string> secretQueue  =new ConcurrentQueue<string>();
+        public bool isAuthenticated = false;
+        public int slotID;
+        public ArchipelagoSession session;
+        public bool deathLinkStatus = false;
+        public DeathLinkService deathLinkService;
+        public Dictionary<string, int> itemsRecieved = new Dictionary<string, int>();
+        public ConcurrentQueue<string> secretQueue  =new ConcurrentQueue<string>();
         
-        public static bool Connect(string address, string slot, string password) {
+        public bool Connect(string address, string slot, string password) {
             if(isAuthenticated) {
                 return true;
             }
@@ -34,7 +37,7 @@ namespace CarQuestAP.Archipelago {
                 GAME_NAME,
                 slot,
                 ItemsHandlingFlags.AllItems,
-                new System.Version(AP_VERSION[0], AP_VERSION[1], AP_VERSION[2]),
+                new Version(AP_VERSION[0], AP_VERSION[1], AP_VERSION[2]),
                 null,
                 "",
                 password
@@ -50,9 +53,9 @@ namespace CarQuestAP.Archipelago {
             return false;
         }
 
-        private static void Session_ItemReceived(ReceivedItemsHelper helper) {
+        private void Session_ItemReceived(ReceivedItemsHelper helper) {
             ItemInfo item = helper.DequeueItem();
-            CarQuestAP._log.LogInfo($"Received {item.ItemName} ({item.ItemId})");
+            CarQuestAP._log.LogInfo($"[ItemRecieved] Received {item.ItemName} ({item.ItemId})");
             
             if(itemsRecieved.ContainsKey(item.ItemName)) {
                 itemsRecieved[item.ItemName]++;
@@ -64,16 +67,16 @@ namespace CarQuestAP.Archipelago {
             if(item.ItemId < 500) {
                 string secret = SecretHandler.unlockSecret(item.ItemName, itemsRecieved[item.ItemName]);
                 if(secret != null) {
-                    secretQueue.AddItem(secret);
+                    secretQueue.Enqueue(secret);
                 }
             }
 
-            if(item.ItemId == 10001) UnityEngine.Object.FindObjectOfType<GameControl>().AddCoin(1);
-            if(item.ItemId == 10002) UnityEngine.Object.FindObjectOfType<GameControl>().AddCoin(25);
-            if(item.ItemId == 10003) UnityEngine.Object.FindObjectOfType<GameControl>().AddCoin(50);
+            if(item.ItemId == 10001) FindObjectOfType<GameControl>().AddCoin(1);
+            if(item.ItemId == 10002) FindObjectOfType<GameControl>().AddCoin(25);
+            if(item.ItemId == 10003) FindObjectOfType<GameControl>().AddCoin(50);
         }
 
-        public static void sendLocation(string locName) {
+        public void sendLocation(string locName) {
             long locID = session.Locations.GetLocationIdFromName(GAME_NAME, locName);
 
             if(locID != -1) {
@@ -85,11 +88,19 @@ namespace CarQuestAP.Archipelago {
             }
         }
 
-        public static void goalGame() {
+        public void goalGame() {
             var statusUpdatePacket = new StatusUpdatePacket {
                 Status = ArchipelagoClientState.ClientGoal
             };
             session.Socket.SendPacket(statusUpdatePacket);
+        }
+
+        private void Update() {
+            if(!secretQueue.IsEmpty) {
+                secretQueue.TryDequeue(out var result);
+                CarQuestAP._log.LogInfo($"[APClient Update] Unlocking {result}");
+                eSecret.SetValue("ap_" + result, 1, true);
+            }
         }
     }
 }

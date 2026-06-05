@@ -13,7 +13,7 @@ namespace CarQuestAP.Patches {
 
             if(SecretHandler.getLocationName(__instance.secretID) != "") {
                 CarQuestAP._log.LogInfo($"Secret ID: {__instance.secretID} Location Name: {SecretHandler.getLocationName(__instance.secretID)}");
-                ArchipelagoClient.sendLocation(SecretHandler.getLocationName(__instance.secretID));
+                CarQuestAP.apClient.sendLocation(SecretHandler.getLocationName(__instance.secretID));
                 CarQuestAP.saves[CarQuestAP.saveSlot].AddNewLocation(__instance.secretID);
             }
             else {
@@ -90,7 +90,7 @@ namespace CarQuestAP.Patches {
         [HarmonyPostfix]
         public static void PostFix(ref Portal __instance) {
             if(__instance.name == "PortalLeave" || __instance.name == "PortalStay") {
-                ArchipelagoClient.goalGame();
+                CarQuestAP.apClient.goalGame();
             }
         }
     }
