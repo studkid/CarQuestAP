@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using CarQuestAP.Archipelago;
 
 namespace CarQuestAP.Helpers {
     public static class SecretHandler {
@@ -470,6 +471,8 @@ namespace CarQuestAP.Helpers {
             {"yellowcrown",         "limbo: Crown Artifact"},
         };
 
+        public static List<string> disabledSecrets = new List<string>();
+
         public static string getLocationName(string secretID) {
             if(!locationMapping.ContainsKey(secretID)) {
                 return "";
@@ -491,17 +494,21 @@ namespace CarQuestAP.Helpers {
             return new List<string>();
         }
 
-        public static void unlockSecret(string locName, int count) {
+        public static string unlockSecret(string locName, int count) {
             List<string> secretIDs = locToSecretID(locName);
 
             if(!secretIDs.Any()) {
                 CarQuestAP._log.LogError($"{locName} has no secret mapped!");
-                return;
+                return null;
             }
 
             CarQuestAP._log.LogInfo($"Unlocking {secretIDs[count-1]} ({locName})");
-            // eSecret.SetValue("ap_" + secretIDs[count - 1], 1, true);
-            CarQuestAP.saves[CarQuestAP.saveSlot].AddNewSecret(secretIDs[count - 1]);
+            CarQuestAP.saves[CarQuestAP.saveSlot].AddNewSecret(secretIDs[count - 1]);   
+            return secretIDs[count - 1];
+        }
+
+        public static bool isDisabled(string secretID) {
+            return disabledSecrets.Contains(secretID);
         }
     }
 }

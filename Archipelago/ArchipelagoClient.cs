@@ -7,6 +7,7 @@ using Archipelago.MultiClient.Net.Helpers;
 using Archipelago.MultiClient.Net.Packets;
 using System.Collections.Generic;
 using CarQuestAP.Helpers;
+using HarmonyLib;
 
 namespace CarQuestAP.Archipelago {
     public static class ArchipelagoClient {
@@ -20,6 +21,7 @@ namespace CarQuestAP.Archipelago {
         public static bool deathLinkStatus = false;
         public static DeathLinkService deathLinkService;
         public static Dictionary<string, int> itemsRecieved = new Dictionary<string, int>();
+        public static ConcurrentQueue<string> secretQueue  =new ConcurrentQueue<string>();
         
         public static bool Connect(string address, string slot, string password) {
             if(isAuthenticated) {
@@ -60,7 +62,10 @@ namespace CarQuestAP.Archipelago {
             }
 
             if(item.ItemId < 500) {
-                SecretHandler.unlockSecret(item.ItemName, itemsRecieved[item.ItemName]);
+                string secret = SecretHandler.unlockSecret(item.ItemName, itemsRecieved[item.ItemName]);
+                if(secret != null) {
+                    secretQueue.AddItem(secret);
+                }
             }
 
             if(item.ItemId == 10001) UnityEngine.Object.FindObjectOfType<GameControl>().AddCoin(1);

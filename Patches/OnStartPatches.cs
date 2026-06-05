@@ -53,19 +53,6 @@ namespace CarQuestAP.Patches {
         }
     }
 
-    [HarmonyPatch(typeof(SecretCollect), "SecretChangedDelay")]
-    public static class RespawnSecret {
-        [HarmonyPostfix]
-        public static void PostFix(ref SecretCollect __instance) {
-            if(!CarQuestAP.saves[CarQuestAP.saveSlot].LocationChecked(__instance.secretID)) {
-                __instance.secretObject.SetActive(true);
-            }
-            else {
-                __instance.secretObject.SetActive(false);
-            }
-        }
-    }
-
     [HarmonyPatch(typeof(Menu), "Awake")]
     public static class ModifyMenuButtons {
         [HarmonyPostfix]
