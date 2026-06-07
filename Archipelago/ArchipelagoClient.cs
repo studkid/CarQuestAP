@@ -96,6 +96,11 @@ namespace CarQuestAP.Archipelago {
         }
 
         private void Update() {
+            Menu menu = FindObjectOfType<Menu>();
+            if(menu.currentMenu != "Game") {
+                return;
+            }
+
             if(!secretQueue.IsEmpty) {
                 secretQueue.TryDequeue(out var result);
                 CarQuestAP._log.LogInfo($"[APClient Update] Unlocking {result}");

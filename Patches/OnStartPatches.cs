@@ -20,6 +20,12 @@ namespace CarQuestAP.Patches {
             }
 
             if(action.Contains("Slot")) {
+                if(CarQuestAP.apClient.isAuthenticated) {
+                    __instance.DoAction("Start");
+                    return;
+                }
+
+                eSecret.DeleteAll();
                 char[] actionChar = action.ToCharArray();
                 int slotNum = int.Parse(actionChar[^1].ToString()) + 1;
                 ePlayerPrefs.SetSlot(slotNum);
@@ -34,8 +40,6 @@ namespace CarQuestAP.Patches {
             }
 
             if(action == "Start") {
-                eSecret.DeleteAll();
-                // CarQuestAP.saveHandler.LoadAPSave();
             }
 
             if(action == "SaveProfiles") {

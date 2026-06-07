@@ -90,6 +90,15 @@ namespace CarQuestAP.Archipelago {
                 if(buttons.ContainsKey(key)) {
                     buttons[key].SetActive(true);
                 }
+
+                if(eSecret.secrets.System_Collections_IDictionary_Contains(key)) {
+                    if(eSecret.secrets[key] == 0) {
+                        buttons[key].GetComponent<Button>().image.sprite = normalButton;
+                    }
+                    else {
+                        buttons[key].GetComponent<Button>().image.sprite = cheatButton;
+                    }
+                }
             }
         }
 

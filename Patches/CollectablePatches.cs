@@ -35,10 +35,8 @@ namespace CarQuestAP.Patches {
     public static class eSecretChangeList {
         [HarmonyPrefix]
         public static void PreFix(ref string key, ref int value, ref bool addChangeList) {
-            CarQuestAP._log.LogInfo($"[SetValue] {key}");
             if(key.Contains("ap_")) {
                 key = key.Substring(3);
-                CarQuestAP._log.LogInfo($"[SetValue] {key}");
             }
             else {
                 value = 0;
@@ -58,6 +56,14 @@ namespace CarQuestAP.Patches {
             else {
                 __instance.secretObject.SetActive(false);
             }
+        }
+    }
+
+    [HarmonyPatch(typeof(SecretCollect), "SecretChanged")]
+    public static class Debug {
+        [HarmonyPostfix]
+        public static void PostFix(ref SecretCollect __instance) {
+            CarQuestAP._log.LogInfo($"[SecretCollect] {__instance.secretID}");
         }
     }
 
