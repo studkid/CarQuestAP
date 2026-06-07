@@ -59,14 +59,6 @@ namespace CarQuestAP.Patches {
         }
     }
 
-    [HarmonyPatch(typeof(SecretCollect), "SecretChanged")]
-    public static class Debug {
-        [HarmonyPostfix]
-        public static void PostFix(ref SecretCollect __instance) {
-            CarQuestAP._log.LogInfo($"[SecretCollect] {__instance.secretID}");
-        }
-    }
-
     [HarmonyPatch(typeof(Token), "OnTriggerEnter")]
     public static class PrintToken {
         [HarmonyPostfix]

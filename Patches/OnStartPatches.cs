@@ -52,6 +52,7 @@ namespace CarQuestAP.Patches {
                 GameControl gc = Object.FindObjectOfType<GameControl>();
                 CarQuestAP._log.LogInfo(gc.gameObject.GetComponent<Portal>().name);
                 gc.EnterPortal(gc.gameObject.GetComponent<Portal>());
+                __instance.MenuShow("Game");
                 return;
             }
         }
