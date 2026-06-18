@@ -50,17 +50,45 @@ namespace CarQuestAP.Archipelago {
             itemScroll.horizontal = false;
 
             foreach(string secret in SecretHandler.getHubSecrets().Keys) {
-                GameObject newTransBtn = Object.Instantiate(btnTransTemplate);
-                CarQuestAP._log.LogInfo(newTransBtn.GetComponent<Button>());
-                newTransBtn.name = secret;
-                newTransBtn.transform.GetChild(0).GetComponent<Text>().text = secret;
-                Object.Destroy(newTransBtn.transform.GetChild(0).GetComponent<DisplayDataUI>());
-                Button newBtn = newTransBtn.AddComponent<Button>();
-                newBtn.onClick.AddListener((UnityAction)delegate{toggleSecret(secret, newTransBtn.GetComponent<Image>());});
-                newTransBtn.SetActive(false);
-                buttons[secret] = newTransBtn;
+                if(secret == "Hub: Progressive Pool") {
+                    GameObject newTransBtn = Object.Instantiate(btnTransTemplate);
+                    CarQuestAP._log.LogInfo(newTransBtn.GetComponent<Button>());
+                    newTransBtn.name = "Hub: Drain Pool";
+                    newTransBtn.transform.GetChild(0).GetComponent<Text>().text = "Hub: Drain Pool";
+                    Object.Destroy(newTransBtn.transform.GetChild(0).GetComponent<DisplayDataUI>());
+                    Button newBtn = newTransBtn.AddComponent<Button>();
+                    newBtn.onClick.AddListener((UnityAction)delegate{toggleSecret(secret, newTransBtn.GetComponent<Image>(), 0);});
+                    newTransBtn.SetActive(false);
+                    buttons["Hub: Drain Pool"] = newTransBtn;
 
-                newTransBtn.transform.SetParent(itemTrans.transform);
+                    newTransBtn.transform.SetParent(itemTrans.transform);
+
+                    newTransBtn = Object.Instantiate(btnTransTemplate);
+                    CarQuestAP._log.LogInfo(newTransBtn.GetComponent<Button>());
+                    newTransBtn.name = "Hub: Refill Pool";
+                    newTransBtn.transform.GetChild(0).GetComponent<Text>().text = "Hub: Refill Pool";
+                    Object.Destroy(newTransBtn.transform.GetChild(0).GetComponent<DisplayDataUI>());
+                    newBtn = newTransBtn.AddComponent<Button>();
+                    newBtn.onClick.AddListener((UnityAction)delegate{toggleSecret(secret, newTransBtn.GetComponent<Image>(), 1);});
+                    newTransBtn.SetActive(false);
+                    buttons["Hub: Refill Pool"] = newTransBtn;
+
+                    newTransBtn.transform.SetParent(itemTrans.transform);
+                }
+
+                else {
+                    GameObject newTransBtn = Object.Instantiate(btnTransTemplate);
+                    CarQuestAP._log.LogInfo(newTransBtn.GetComponent<Button>());
+                    newTransBtn.name = secret;
+                    newTransBtn.transform.GetChild(0).GetComponent<Text>().text = secret;
+                    Object.Destroy(newTransBtn.transform.GetChild(0).GetComponent<DisplayDataUI>());
+                    Button newBtn = newTransBtn.AddComponent<Button>();
+                    newBtn.onClick.AddListener((UnityAction)delegate{toggleSecret(secret, newTransBtn.GetComponent<Image>(), 0);});
+                    newTransBtn.SetActive(false);
+                    buttons[secret] = newTransBtn;
+
+                    newTransBtn.transform.SetParent(itemTrans.transform);
+                }
             }
             
             backTrans.transform.SetParent(itemMenu.transform);
@@ -91,6 +119,14 @@ namespace CarQuestAP.Archipelago {
                     buttons[key].SetActive(true);
                 }
 
+                if(key == "Hub: Progressive Pool") {
+                    buttons["Hub: Drain Pool"].SetActive(true);
+
+                    if(CarQuestAP.apClient.itemsRecieved[key] >= 2) {
+                        buttons["Hub: Refill Pool"].SetActive(true);
+                    }
+                }
+
                 if(eSecret.secrets.System_Collections_IDictionary_Contains(key)) {
                     if(eSecret.secrets[key] == 0) {
                         buttons[key].GetComponent<Button>().image.sprite = normalButton;
@@ -102,14 +138,14 @@ namespace CarQuestAP.Archipelago {
             }
         }
 
-        public static void toggleSecret(string locName, Image image) {
-            int value = eSecret.GetValue(SecretHandler.locToSecretID(locName)[0]);
+        public static void toggleSecret(string locName, Image image, int count) {
+            int value = eSecret.GetValue(SecretHandler.locToSecretID(locName)[count]);
             if(value == 0) {
-                eSecret.SetValue("ap_" + SecretHandler.locToSecretID(locName)[0], 1, true);
+                eSecret.SetValue("ap_" + SecretHandler.locToSecretID(locName)[count], 1, true);
                 image.sprite = cheatButton;
             }
             else {
-                eSecret.SetValue("ap_" + SecretHandler.locToSecretID(locName)[0], 0, true);
+                eSecret.SetValue("ap_" + SecretHandler.locToSecretID(locName)[count], 0, true);
                 image.sprite = normalButton;
             }
         }
