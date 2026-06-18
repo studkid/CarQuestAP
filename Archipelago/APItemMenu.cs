@@ -114,25 +114,35 @@ namespace CarQuestAP.Archipelago {
         }
 
         public static void updateItemMenu() {
-            foreach(string key in CarQuestAP.apClient.itemsRecieved.Keys) {
-                if(buttons.ContainsKey(key)) {
-                    buttons[key].SetActive(true);
+            foreach(KeyValuePair<string, GameObject> entry in buttons) {
+                string key = entry.Key;
+                GameObject button = entry.Value;
+                int count = 1;
+
+                if(key == "Hub: Drain Pool") {
+                    key = "Hub: Progressive Pool";
+                }
+                if(key == "Hub: Refill Pool") {
+                    key = "Hub: Progressive Pool";
+                    count = 2;
                 }
 
-                if(key == "Hub: Progressive Pool") {
-                    buttons["Hub: Drain Pool"].SetActive(true);
-
-                    if(CarQuestAP.apClient.itemsRecieved[key] >= 2) {
-                        buttons["Hub: Refill Pool"].SetActive(true);
+                if(CarQuestAP.apClient.itemsRecieved.ContainsKey(key)) {
+                    if(!(CarQuestAP.apClient.itemsRecieved[key] >= count)) {
+                        continue;
                     }
-                }
 
-                if(eSecret.secrets.System_Collections_IDictionary_Contains(key)) {
-                    if(eSecret.secrets[key] == 0) {
-                        buttons[key].GetComponent<Button>().image.sprite = normalButton;
-                    }
-                    else {
-                        buttons[key].GetComponent<Button>().image.sprite = cheatButton;
+                    button.SetActive(true);
+                    string secretID = SecretHandler.locToSecretID(key)[count - 1];
+                    
+                    if(eSecret.secrets.System_Collections_IDictionary_Contains(secretID)) {
+                        // CarQuestAP._log.LogDebug($"{key}: {eSecret.secrets[secretID]}");
+                        if(eSecret.secrets[secretID] == 0) {
+                            button.GetComponent<Button>().image.sprite = normalButton;
+                        }
+                        else {
+                            button.GetComponent<Button>().image.sprite = cheatButton;
+                        }
                     }
                 }
             }
