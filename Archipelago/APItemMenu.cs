@@ -150,6 +150,7 @@ namespace CarQuestAP.Archipelago {
 
         public static void toggleSecret(string locName, Image image, int count) {
             int value = eSecret.GetValue(SecretHandler.locToSecretID(locName)[count]);
+            CarQuestAP._log.LogInfo($"[toggleSecret] {locName}: toggling {SecretHandler.locToSecretID(locName)[count]} {value}");
             if(value == 0) {
                 eSecret.SetValue("ap_" + SecretHandler.locToSecretID(locName)[count], 1, true);
                 image.sprite = cheatButton;

@@ -25,6 +25,8 @@ namespace CarQuestAP.Archipelago {
         public DeathLinkService deathLinkService;
         public Dictionary<string, int> itemsRecieved = new Dictionary<string, int>();
         public ConcurrentQueue<string> secretQueue  =new ConcurrentQueue<string>();
+        private int museumGlass = 0;
+        private bool museumUnlock = false;
         
         public bool Connect(string address, string slot, string password) {
             if(isAuthenticated) {
@@ -65,10 +67,11 @@ namespace CarQuestAP.Archipelago {
             }
 
             if(item.ItemId < 500) {
-                string secret = SecretHandler.unlockSecret(item.ItemName, itemsRecieved[item.ItemName]);
-                if(secret != null) {
-                    secretQueue.Enqueue(secret);
-                }
+                secretQueue.Enqueue(item.ItemName);
+            }
+
+            if(item.ItemName.Contains("Museum Glass")) {
+                museumGlass++;
             }
 
             if(item.ItemId == 10001) FindObjectOfType<GameControl>().AddCoin(1);
@@ -103,8 +106,16 @@ namespace CarQuestAP.Archipelago {
 
             if(!secretQueue.IsEmpty) {
                 secretQueue.TryDequeue(out var result);
-                CarQuestAP._log.LogInfo($"[APClient Update] Unlocking {result}");
-                eSecret.SetValue("ap_" + result, 1, true);
+                string secret = SecretHandler.unlockSecret(result, itemsRecieved[result]);
+                CarQuestAP._log.LogInfo($"[APClient Update] Unlocking {secret}");
+                eSecret.SetValue("ap_" + secret, 1, true);
+                eSecret.Save();
+            }
+
+            if(museumGlass >= 10 && !museumUnlock) {
+                eSecret.SetValue("ap_endportals", 1, true);
+                eSecret.Save();
+                museumUnlock = true;
             }
         }
     }

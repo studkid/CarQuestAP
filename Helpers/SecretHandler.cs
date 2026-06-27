@@ -12,7 +12,7 @@ namespace CarQuestAP.Helpers {
             {"Hub: North Pool Jump Ramp",                    ["pieceramptop"]},
             {"Hub: South Pool Artifact Block",               ["sculpturecover"]},
             {"Hub: Upper University Alleyway Access",        ["cornerramp"]},
-            {"Hub: South Pool Dead End Door",                 ["leftshortwall"]},
+            {"Hub: South Pool Dead End Door",                ["leftshortwall"]},
             {"Hub: Tree Slalom Unlock",                      ["slalomtrees"]},
             {"Hub: Museum Unlock",                           ["museumramp"]},
             {"Hub: North Pool Portal Access",                ["sidebridge"]},
@@ -187,7 +187,7 @@ namespace CarQuestAP.Helpers {
             {"Island: Lower Serpant Head",                   ["seamonsterhead"]},
             {"Island: Lower Spiral Island",                  ["plaque"]},
             {"Island: Pond Treetop Ramp",                    ["treeramp"]},
-            {"Island: Serpant head Jump Ramp",               ["seamonsterheadramp"]},
+            {"Island: Serpant Head Jump Ramp",               ["seamonsterheadramp"]},
             {"Island: Hut Entrance Ramp",                    ["hutblocker"]},
             {"Island: East Ocean Jump Ramp",                 ["seablocktop"]},
             {"Island: Hut Treetop Ramp",                     ["huttreeway"]},
@@ -468,7 +468,7 @@ namespace CarQuestAP.Helpers {
             {"cbb",                 "Power Room: Top Artifact Near Token"},
 
             // Limbo
-            {"yellowcrown",         "limbo: Crown Artifact"},
+            {"yellowcrown",         "Limbo: Crown Artifact"},
         };
 
         public static List<string> disabledSecrets = new List<string>();
