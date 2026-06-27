@@ -16,7 +16,7 @@ namespace CarQuestAP.Archipelago {
         public ArchipelagoClient(IntPtr ptr) : base(ptr) {}
 
         public static int[] AP_VERSION = {0, 6, 7};
-        public const string GAME_NAME = "Secret Game";
+        public const string GAME_NAME = "Car Quest Deluxe";
 
         public bool isAuthenticated = false;
         public int slotID;
