@@ -143,7 +143,7 @@ namespace CarQuestAP.Helpers {
 
             // Ice Temple
             {"Ice: West Artifact Blocker",                  ["templehighblocker"]},
-            {"Ice: South Ramp Blocker",                     ["templelowlocker"]},
+            {"Ice: South Ramp Blocker",                     ["templelowblocker"]},
             {"Ice: Secondary Wall Ramp",                    ["hugelongramp"]},
             {"Ice: Ice Pillar Blocker",                     ["sliderclamp"]},
             {"Ice: Perimeter Wall Blocker",                 ["walkwayblocker"]},

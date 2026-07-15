@@ -27,6 +27,7 @@ namespace CarQuestAP.Archipelago {
         public ConcurrentQueue<string> secretQueue  =new ConcurrentQueue<string>();
         private int museumGlass = 0;
         private bool museumUnlock = false;
+        private int batteryToAdd = 0;
         
         public bool Connect(string address, string slot, string password) {
             if(isAuthenticated) {
@@ -74,9 +75,9 @@ namespace CarQuestAP.Archipelago {
                 museumGlass++;
             }
 
-            if(item.ItemId == 10001) FindObjectOfType<GameControl>().AddCoin(1);
-            if(item.ItemId == 10002) FindObjectOfType<GameControl>().AddCoin(25);
-            if(item.ItemId == 10003) FindObjectOfType<GameControl>().AddCoin(50);
+            if(item.ItemId == 10001) batteryToAdd = 1;
+            if(item.ItemId == 10002) batteryToAdd = 25;
+            if(item.ItemId == 10003) batteryToAdd = 50;
         }
 
         public void sendLocation(string locName) {
@@ -116,6 +117,11 @@ namespace CarQuestAP.Archipelago {
                 eSecret.SetValue("ap_endportals", 1, true);
                 eSecret.Save();
                 museumUnlock = true;
+            }
+
+            if(batteryToAdd > 0) {
+                FindObjectOfType<GameControl>().AddCoin(batteryToAdd);
+                batteryToAdd = 0;
             }
         }
     }
