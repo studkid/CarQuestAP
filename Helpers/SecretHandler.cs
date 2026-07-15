@@ -49,7 +49,7 @@ namespace CarQuestAP.Helpers {
             {"Hub: Colloseum Podium Ramp",                   ["arenabigramp"]},
             {"Hub: Ramp to Light Puzzle",                    ["cornerwall"]},
             {"Hub: Top Path Floating Islands",               ["singlefloatingrock"]},
-            {"Hub: Start Outlook Dead End Door",             ["deadendwall"]},
+            {"Hub: Start Lookout Dead End Door",             ["deadendwall"]},
             {"Hub: Bottom Path Floating Islands",            ["floatingrocks"]},
             {"Hub: Lookout Long Path Door",                  ["ledgebridge"]},
             {"Hub: Whales and Central Dead End Door",        ["anotherdeadendwall"]},
